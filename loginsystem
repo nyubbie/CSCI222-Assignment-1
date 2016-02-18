@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <conio.h>
+using namespace std;
+
+
+int main()
+{
+	char loginId[30];
+	char password[30];
+	
+	cout << "\t\tWelcome to Country Club Online booking service" << endl;
+	cout << endl;
+	cout << "Login id : ";
+	cin >> loginId;
+	
+	char str[20],c=' ';
+	int i=0;
+	printf("\n Enter the password [max length 20] : ");
+	while (i<=19){
+	    str[i]=getch();
+	    c=str[i];
+	    if(c==13) break;
+	    else printf("*");
+	    i++;
+	}
+	str[i]='\0';
+	i=0;
+	//codes for verifying the login details with textfile
+	cout << "\nSuccess login" << endl;
+}
+
