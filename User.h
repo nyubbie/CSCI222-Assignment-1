@@ -15,6 +15,12 @@ protected:
 
 public:
 
+	// Constructor
+	User();
+
+	// Destructor (?)
+	~User();
+
 }
 
 #endif

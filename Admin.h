@@ -8,12 +8,27 @@ class Admin : public User {
 
 private:
 
+	// Inherited variables from User class
+	// int userID;
+	// std::string userPassword;
+
 protected:
 
 public:
 
+	// Constructor
+	Admin();
+
+	// Destructor (?)
+	~Admin();
+
+	// Validate member login
 	validateAdminUser();
-	getAdmin(int);
+
+	// Get member details based on Member object
+	getMember(Member);
+
+	
 
 }
 

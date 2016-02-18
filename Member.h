@@ -15,8 +15,14 @@ protected:
 
 public:
 
+	// Constructor
+	Member();
+
+	// Destructor (?)
+	~Member();
+
 	// Validate member login
-	validateMemberUser();
+	validateMemberUser(); 
 
 	// Get member details based on ID
 	getMember(int);

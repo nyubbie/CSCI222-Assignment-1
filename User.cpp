@@ -10,3 +10,13 @@ using namespace std;
 // Functions here
 
 // Saved text file should be different (security?)
+
+// User Constructor
+User::User() {
+	
+}
+
+// User Destructor
+User::~User() {
+	
+}
