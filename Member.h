@@ -3,13 +3,17 @@
 
 #include <string>
 
-class member {
+// Should inherit from User Class
+class Member : public User {
 
 private: 
 
 protected:
 
 public:
+
+	validateMemberUser();
+	getMember(int);
 
 }
 

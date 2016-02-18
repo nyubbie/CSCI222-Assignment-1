@@ -6,3 +6,14 @@
 using namespace std;
 
 // Functions here
+
+// Need functionality to read from text file (Member)
+
+void validateMemberUser() {
+	
+}
+
+// Need functionality to get members via ID
+Member getMember(int memberID) {
+	
+}
