@@ -4,7 +4,6 @@
 #include <string>
 
 // General class for users in the system
-
 class User {
 
 private: 
@@ -15,8 +14,6 @@ private:
 protected:
 
 public:
-
-	getMember(int);
 
 }
 

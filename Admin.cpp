@@ -11,7 +11,7 @@ using namespace std;
 
 // Need functionality to read from text file (Admin)
 void validateAdminUser() {
-	
+	// Read from text file
 }
 
 // Need functionality to get members via ID
