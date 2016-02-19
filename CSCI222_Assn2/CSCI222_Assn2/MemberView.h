@@ -43,10 +43,18 @@ namespace CSCI222_Assn2 {
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Label^  label8;
 	private: System::Windows::Forms::Label^  label9;
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::Button^  editMemberName;
+	private: System::Windows::Forms::Button^  editMemberAddress;
+	private: System::Windows::Forms::Button^  editMemberDOB;
+	private: System::Windows::Forms::Button^  memberLogout;
+
+
+
+
+
+
+
+
 	protected:
 
 	private:
@@ -71,10 +79,10 @@ namespace CSCI222_Assn2 {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->editMemberName = (gcnew System::Windows::Forms::Button());
+			this->editMemberAddress = (gcnew System::Windows::Forms::Button());
+			this->editMemberDOB = (gcnew System::Windows::Forms::Button());
+			this->memberLogout = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -159,52 +167,55 @@ namespace CSCI222_Assn2 {
 			this->label9->TabIndex = 8;
 			this->label9->Text = L"label9";
 			// 
-			// button1
+			// editMemberName
 			// 
-			this->button1->Location = System::Drawing::Point(514, 80);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 9;
-			this->button1->Text = L"Edit Name";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MemberView::button1_Click);
+			this->editMemberName->Location = System::Drawing::Point(514, 80);
+			this->editMemberName->Name = L"editMemberName";
+			this->editMemberName->Size = System::Drawing::Size(75, 23);
+			this->editMemberName->TabIndex = 9;
+			this->editMemberName->Text = L"Edit Name";
+			this->editMemberName->UseVisualStyleBackColor = true;
+			this->editMemberName->Click += gcnew System::EventHandler(this, &MemberView::editMemberName_Click);
 			// 
-			// button2
+			// editMemberAddress
 			// 
-			this->button2->Location = System::Drawing::Point(514, 118);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 10;
-			this->button2->Text = L"Edit Address";
-			this->button2->UseVisualStyleBackColor = true;
+			this->editMemberAddress->Location = System::Drawing::Point(514, 118);
+			this->editMemberAddress->Name = L"editMemberAddress";
+			this->editMemberAddress->Size = System::Drawing::Size(75, 23);
+			this->editMemberAddress->TabIndex = 10;
+			this->editMemberAddress->Text = L"Edit Address";
+			this->editMemberAddress->UseVisualStyleBackColor = true;
+			this->editMemberAddress->Click += gcnew System::EventHandler(this, &MemberView::editMemberAddress_Click);
 			// 
-			// button3
+			// editMemberDOB
 			// 
-			this->button3->Location = System::Drawing::Point(514, 156);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(75, 23);
-			this->button3->TabIndex = 11;
-			this->button3->Text = L"Edit DOB";
-			this->button3->UseVisualStyleBackColor = true;
+			this->editMemberDOB->Location = System::Drawing::Point(514, 156);
+			this->editMemberDOB->Name = L"editMemberDOB";
+			this->editMemberDOB->Size = System::Drawing::Size(75, 23);
+			this->editMemberDOB->TabIndex = 11;
+			this->editMemberDOB->Text = L"Edit DOB";
+			this->editMemberDOB->UseVisualStyleBackColor = true;
+			this->editMemberDOB->Click += gcnew System::EventHandler(this, &MemberView::editMemberDOB_Click);
 			// 
-			// button4
+			// memberLogout
 			// 
-			this->button4->Location = System::Drawing::Point(514, 197);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(75, 23);
-			this->button4->TabIndex = 12;
-			this->button4->Text = L"Logout";
-			this->button4->UseVisualStyleBackColor = true;
+			this->memberLogout->Location = System::Drawing::Point(514, 197);
+			this->memberLogout->Name = L"memberLogout";
+			this->memberLogout->Size = System::Drawing::Size(75, 23);
+			this->memberLogout->TabIndex = 12;
+			this->memberLogout->Text = L"Logout";
+			this->memberLogout->UseVisualStyleBackColor = true;
+			this->memberLogout->Click += gcnew System::EventHandler(this, &MemberView::memberLogout_Click);
 			// 
 			// MemberView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(656, 261);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->memberLogout);
+			this->Controls->Add(this->editMemberDOB);
+			this->Controls->Add(this->editMemberAddress);
+			this->Controls->Add(this->editMemberName);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
@@ -220,9 +231,17 @@ namespace CSCI222_Assn2 {
 			this->PerformLayout();
 
 		}
-#pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	#pragma endregion
+	private: System::Void editMemberName_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void editMemberAddress_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void editMemberDOB_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
 
+	// Go back to the Login Screen
+	private: System::Void memberLogout_Click(System::Object^  sender, System::EventArgs^  e) {
+		
 	}
 };
 }

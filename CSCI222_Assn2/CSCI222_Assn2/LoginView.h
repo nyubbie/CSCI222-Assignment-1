@@ -1,4 +1,5 @@
 #pragma once
+
 #include "MemberView.h"
 
 namespace CSCI222_Assn2 {
@@ -40,7 +41,9 @@ namespace CSCI222_Assn2 {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  systemLogin;
+
+
 	protected:
 
 	private:
@@ -61,7 +64,7 @@ namespace CSCI222_Assn2 {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->systemLogin = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -105,22 +108,22 @@ namespace CSCI222_Assn2 {
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 4;
 			// 
-			// button1
+			// systemLogin
 			// 
-			this->button1->Location = System::Drawing::Point(104, 196);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 5;
-			this->button1->Text = L"Login";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &LoginView::button1_Click);
+			this->systemLogin->Location = System::Drawing::Point(104, 196);
+			this->systemLogin->Name = L"systemLogin";
+			this->systemLogin->Size = System::Drawing::Size(75, 23);
+			this->systemLogin->TabIndex = 5;
+			this->systemLogin->Text = L"Login";
+			this->systemLogin->UseVisualStyleBackColor = true;
+			this->systemLogin->Click += gcnew System::EventHandler(this, &LoginView::button1_Click);
 			// 
 			// LoginView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->systemLogin);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label3);
@@ -139,6 +142,25 @@ namespace CSCI222_Assn2 {
 		this->Hide();
 		MemberView^ memberForm = gcnew MemberView();
 		memberForm->Show();
+	}
+	// Function to read Member Database (MemberDB.txt)
+	void readMemberFile() {
+
+		// Read member file
+		//ifstream myfile("MemberDB.txt");
+
+		//string line;
+		//if (myfile.is_open())
+		//{
+		//	while (getline(myfile, line))
+		//	{
+		//		//label1->Text = line;
+		//	}
+		//	myfile.close();
+		//}
+	}
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		readMemberFile();
 	}
 };
 }
