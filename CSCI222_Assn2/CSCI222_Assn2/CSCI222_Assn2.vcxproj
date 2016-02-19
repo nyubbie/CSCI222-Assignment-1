@@ -132,16 +132,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="LoginView.cpp" />
+    <ClCompile Include="MemberView.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="LoginView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MemberView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyForm.resx">
-      <DependentUpon>MyForm.h</DependentUpon>
+    <EmbeddedResource Include="LoginView.resx">
+      <DependentUpon>LoginView.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberView.resx">
+      <DependentUpon>MemberView.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
