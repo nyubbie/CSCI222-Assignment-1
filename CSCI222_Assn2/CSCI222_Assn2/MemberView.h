@@ -18,6 +18,8 @@ namespace CSCI222_Assn2 {
 		MemberView(void)
 		{
 			InitializeComponent();
+			// Do something
+			//label1->Text = readMemberFile();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -236,10 +238,13 @@ namespace CSCI222_Assn2 {
 		}
 	#pragma endregion
 	private: System::Void editMemberName_Click(System::Object^  sender, System::EventArgs^  e) {
+		
 	}
 	private: System::Void editMemberAddress_Click(System::Object^  sender, System::EventArgs^  e) {
+
 	}
 	private: System::Void editMemberDOB_Click(System::Object^  sender, System::EventArgs^  e) {
+
 	}
 
 	// Go back to the Login Screen

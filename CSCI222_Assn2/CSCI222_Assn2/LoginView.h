@@ -144,24 +144,7 @@ namespace CSCI222_Assn2 {
 		memberForm->Show();
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		//readMemberFile();
+		// Validate Member or Admin Login
 	}
 };
 }
-
-// Function to read Member Database (MemberDB.txt)
-//void readMemberFile() {
-
-	// Read member file
-	//ifstream myfile("MemberDB.txt");
-
-	//string line;
-	//if (myfile.is_open())
-	//{
-	//	while (getline(myfile, line))
-	//	{
-	//		//label1->Text = line;
-	//	}
-	//	myfile.close();
-	//}
-//}

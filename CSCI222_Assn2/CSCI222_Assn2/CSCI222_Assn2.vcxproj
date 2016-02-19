@@ -132,10 +132,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EditView.cpp" />
     <ClCompile Include="LoginView.cpp" />
     <ClCompile Include="MemberView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EditView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -144,6 +148,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EditView.resx">
+      <DependentUpon>EditView.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginView.resx">
       <DependentUpon>LoginView.h</DependentUpon>
     </EmbeddedResource>
