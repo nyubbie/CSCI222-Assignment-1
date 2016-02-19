@@ -13,7 +13,7 @@ using namespace std;
 
 // User Constructor
 User::User() {
-	
+	// Do something
 }
 
 // User Destructor
