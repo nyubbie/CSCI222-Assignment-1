@@ -140,27 +140,28 @@ namespace CSCI222_Assn2 {
 		// Do something with login button
 
 		this->Hide();
-		MemberView^ memberForm = gcnew MemberView();
+		MemberView^ memberForm = gcnew MemberView(this);
 		memberForm->Show();
 	}
-	// Function to read Member Database (MemberDB.txt)
-	void readMemberFile() {
-
-		// Read member file
-		//ifstream myfile("MemberDB.txt");
-
-		//string line;
-		//if (myfile.is_open())
-		//{
-		//	while (getline(myfile, line))
-		//	{
-		//		//label1->Text = line;
-		//	}
-		//	myfile.close();
-		//}
-	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		readMemberFile();
+		//readMemberFile();
 	}
 };
 }
+
+// Function to read Member Database (MemberDB.txt)
+//void readMemberFile() {
+
+	// Read member file
+	//ifstream myfile("MemberDB.txt");
+
+	//string line;
+	//if (myfile.is_open())
+	//{
+	//	while (getline(myfile, line))
+	//	{
+	//		//label1->Text = line;
+	//	}
+	//	myfile.close();
+	//}
+//}

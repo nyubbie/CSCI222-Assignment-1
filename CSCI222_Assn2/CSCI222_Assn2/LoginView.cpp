@@ -9,6 +9,6 @@ using namespace System::Windows::Forms;
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	CSCI222_Assn2::LoginView form;
-	Application::Run(%form);
+	CSCI222_Assn2::LoginView loginView;
+	Application::Run(%loginView);
 }

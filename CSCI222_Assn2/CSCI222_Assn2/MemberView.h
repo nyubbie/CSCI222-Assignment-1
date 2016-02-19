@@ -22,6 +22,15 @@ namespace CSCI222_Assn2 {
 			//TODO: Add the constructor code here
 			//
 		}
+	// This retains the previous menu (LoginView)
+	public:
+		MemberView(System::Windows::Forms::Form^ loginView)
+		{
+			mainForm = loginView;
+			InitializeComponent();
+		}
+
+	private: System::Windows::Forms::Form ^ mainForm;
 
 	protected:
 		/// <summary>
@@ -47,12 +56,6 @@ namespace CSCI222_Assn2 {
 	private: System::Windows::Forms::Button^  editMemberAddress;
 	private: System::Windows::Forms::Button^  editMemberDOB;
 	private: System::Windows::Forms::Button^  memberLogout;
-
-
-
-
-
-
 
 
 	protected:
@@ -241,7 +244,8 @@ namespace CSCI222_Assn2 {
 
 	// Go back to the Login Screen
 	private: System::Void memberLogout_Click(System::Object^  sender, System::EventArgs^  e) {
-		
+		mainForm->Show();
+		this->Close();
 	}
 };
 }
