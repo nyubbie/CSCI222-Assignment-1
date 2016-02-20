@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int option;
+	do
+	{
+		cout << "=================Welcome to country club booking system =================" << endl;
+		cout << "====<Administration page>====" << endl;
+		cout << "Please make a selection of what you want to do" << endl;
+		cout << endl;
+		cout << "1)Create facility\n2)Update facility\n3)Delete facility\n4)Create member\n5)Update member\n6)Delete member\n7)Log out" << endl;
+		cout << endl;
+		cout << "Your option : ";
+		cin >> option;
+		cout << endl;
+	}while (option != 7);
+	
+}
