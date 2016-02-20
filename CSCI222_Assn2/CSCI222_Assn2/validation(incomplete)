@@ -6,6 +6,8 @@ using namespace std;
 
 const int MAX = 100;
 
+//try make use of a struct to store data from textfile
+//might not need all fields as we can use strtok take out only user and password column
 struct User
 {
 	char accountID[MAX];
@@ -34,6 +36,7 @@ int main()
 	
 	//need use strtok here
 	//still in testing process
+	
 	while (afile >> s[i].accountID)
 	{
 		afile >> s[i].accountUser;
