@@ -1,0 +1,48 @@
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <iomanip>
+using namespace std;
+
+const int MAX = 100;
+
+struct User
+{
+	char accountID[MAX];
+	char accountUser[MAX];
+	char accountPass[MAX];
+	int memberType;
+	char name[MAX];
+	char dob[MAX];
+	char address[MAX];
+	
+};
+
+int main()
+{
+	fstream afile;
+	char fileName [MAX] = "AccountDB.txt";
+	User s[MAX];
+	afile.open (fileName, ios::in);
+	
+	if (!afile)
+	{
+		cout << fileName << " opened for reading failed" << endl;
+		exit (-1);
+	}
+	int i = 0;
+	
+	//need use strtok here
+	//still in testing process
+	while (afile >> s[i].accountID)
+	{
+		afile >> s[i].accountUser;
+		i++;
+	}
+
+	cout << s[0].accountID << endl;
+	cout <<  s[1].accountID << endl;
+	cout << s[2].accountID << endl;
+
+}
+
