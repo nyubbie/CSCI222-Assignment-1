@@ -1,0 +1,162 @@
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+const int MAX = 100;
+const char*	LINE_DATA_DELIMITER		= ":";
+const int Line_Char_Buffer_Size = 400;
+
+int NoOfRecordsRead;
+
+//try make use of a struct to store data from textfile
+//might not need all fields as we can use strtok take out only user and password column
+struct User
+{
+	char accountID[MAX];
+	char accountUser[MAX];
+	char accountPass[MAX];
+	int memberType;
+	char name[MAX];
+	char dob[MAX];
+	char address[MAX];
+	
+};
+User globalData [1000]; // array to store all data
+
+User createData (char* aLine);
+char* get_line (char *s, size_t n, FILE *f);
+void displayRecordContent (User s);
+void showAllRecords ();
+
+int main()
+{
+	//fstream afile;
+	char fileName [MAX] = "AccountDB.txt";
+	User s[MAX];
+	int NoOfRecordsRead = 0;
+	char buffer [Line_Char_Buffer_Size];
+	FILE* afile;
+	
+	//afile.open (fileName, ios::in);
+	afile = fopen (fileName , "r");
+	if (!afile)
+	{
+		cout << fileName << " opened for reading failed" << endl;
+		exit (-1);
+	}
+	
+	
+	
+	else
+	{
+		while (!feof(afile))
+     	{
+			char* aLine = get_line (buffer, Line_Char_Buffer_Size, afile);
+			
+			if (aLine != NULL)
+			{
+				globalData [NoOfRecordsRead++] = createData (aLine);
+			}
+		}
+     }
+
+    fclose(afile);
+	
+	
+		cout << s[0].accountUser << endl;
+		cout << s[1].accountUser << endl;
+		cout << s[2].accountUser << endl;
+	
+	
+}
+
+
+
+	
+	//still in testing process
+	
+/*	  cout << "==============================" << endl;
+	while (afile >> s[i].accountID)
+	{
+		afile >> s[i].accountUser;
+		i++;
+	}
+
+	cout << s[0].accountID << endl;
+	cout <<  s[1].accountID << endl;
+	cout << s[2].accountID << endl;
+
+}*/
+
+//============================================
+char* get_line (char *s, size_t n, FILE *f)
+{
+	char *p = fgets (s, n, f);
+
+	if (p != NULL) 
+	{
+		size_t last = strlen (s) - 1;
+		if (s[last] == '\n') 
+			s[last] = '\0';
+	}
+	return p;
+}
+
+//============================================
+
+
+User createData (char* aLine)
+{
+	User s;
+	char* pch = strtok (aLine, LINE_DATA_DELIMITER);
+
+	// 1) 
+	strcpy (s.accountID, pch);
+	pch = strtok (NULL, LINE_DATA_DELIMITER);
+
+	// 2) R
+	strcpy (s.accountUser, pch);
+	pch = strtok (NULL, LINE_DATA_DELIMITER);
+
+	// 3) 
+	strcpy (s.accountPass, pch);
+	pch = strtok (NULL, LINE_DATA_DELIMITER);
+
+	//4
+	s.memberType = atof(pch);
+	pch = strtok (NULL, LINE_DATA_DELIMITER);
+
+	//5
+	strcpy (s.name, pch);
+	pch = strtok (NULL, LINE_DATA_DELIMITER);
+
+	//6
+	strcpy (s.dob, pch);
+	pch = strtok (NULL, LINE_DATA_DELIMITER);
+
+	//7
+	strcpy (s.address, pch);
+	pch = strtok (NULL, LINE_DATA_DELIMITER);
+	
+	return (s);
+
+}
+void displayRecordContent (User s)
+{
+	cout <<"AccountID: " << s.accountID << endl;
+	cout <<"User: " << s.accountUser <<endl;
+	
+} 
+void showAllRecords ()
+{
+	int i=0;
+	for (i=0; i<NoOfRecordsRead; i++)
+	{
+		cout << i << endl;
+		displayRecordContent (globalData [i]);
+	}
+}
