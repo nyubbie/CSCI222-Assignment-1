@@ -1,5 +1,10 @@
 #pragma once
 
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <string>
+
 #include "MemberView.h"
 
 namespace CSCI222_Assn2 {
@@ -36,12 +41,23 @@ namespace CSCI222_Assn2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::Label^  TitleLabel;
+	protected:
+
+	private: System::Windows::Forms::Label^  UsernameLabel;
+	private: System::Windows::Forms::Label^  PasswordLabel;
+	private: System::Windows::Forms::TextBox^  UsernameTextBox;
+	private: System::Windows::Forms::TextBox^  PasswordTextBox;
+
+	protected:
+
+
+
+
+
 	private: System::Windows::Forms::Button^  systemLogin;
+	private: System::Windows::Forms::Label^  label1;
+
 
 
 	protected:
@@ -59,54 +75,55 @@ namespace CSCI222_Assn2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->TitleLabel = (gcnew System::Windows::Forms::Label());
+			this->UsernameLabel = (gcnew System::Windows::Forms::Label());
+			this->PasswordLabel = (gcnew System::Windows::Forms::Label());
+			this->UsernameTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->PasswordTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->systemLogin = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// label1
+			// TitleLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(37, 34);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(189, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Country Club Facilities Booking System";
+			this->TitleLabel->AutoSize = true;
+			this->TitleLabel->Location = System::Drawing::Point(37, 34);
+			this->TitleLabel->Name = L"TitleLabel";
+			this->TitleLabel->Size = System::Drawing::Size(189, 13);
+			this->TitleLabel->TabIndex = 0;
+			this->TitleLabel->Text = L"Country Club Facilities Booking System";
 			// 
-			// label2
+			// UsernameLabel
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(29, 79);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(58, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"Username:";
+			this->UsernameLabel->AutoSize = true;
+			this->UsernameLabel->Location = System::Drawing::Point(29, 79);
+			this->UsernameLabel->Name = L"UsernameLabel";
+			this->UsernameLabel->Size = System::Drawing::Size(58, 13);
+			this->UsernameLabel->TabIndex = 1;
+			this->UsernameLabel->Text = L"Username:";
 			// 
-			// label3
+			// PasswordLabel
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(29, 136);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(56, 13);
-			this->label3->TabIndex = 2;
-			this->label3->Text = L"Password:";
+			this->PasswordLabel->AutoSize = true;
+			this->PasswordLabel->Location = System::Drawing::Point(29, 136);
+			this->PasswordLabel->Name = L"PasswordLabel";
+			this->PasswordLabel->Size = System::Drawing::Size(56, 13);
+			this->PasswordLabel->TabIndex = 2;
+			this->PasswordLabel->Text = L"Password:";
 			// 
-			// textBox1
+			// UsernameTextBox
 			// 
-			this->textBox1->Location = System::Drawing::Point(104, 79);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 3;
+			this->UsernameTextBox->Location = System::Drawing::Point(104, 79);
+			this->UsernameTextBox->Name = L"UsernameTextBox";
+			this->UsernameTextBox->Size = System::Drawing::Size(100, 20);
+			this->UsernameTextBox->TabIndex = 3;
 			// 
-			// textBox2
+			// PasswordTextBox
 			// 
-			this->textBox2->Location = System::Drawing::Point(104, 136);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
-			this->textBox2->TabIndex = 4;
+			this->PasswordTextBox->Location = System::Drawing::Point(104, 136);
+			this->PasswordTextBox->Name = L"PasswordTextBox";
+			this->PasswordTextBox->Size = System::Drawing::Size(100, 20);
+			this->PasswordTextBox->TabIndex = 4;
 			// 
 			// systemLogin
 			// 
@@ -116,19 +133,28 @@ namespace CSCI222_Assn2 {
 			this->systemLogin->TabIndex = 5;
 			this->systemLogin->Text = L"Login";
 			this->systemLogin->UseVisualStyleBackColor = true;
-			this->systemLogin->Click += gcnew System::EventHandler(this, &LoginView::button1_Click);
+			this->systemLogin->Click += gcnew System::EventHandler(this, &LoginView::systemLogin_Click);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(125, 227);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(0, 13);
+			this->label1->TabIndex = 6;
 			// 
 			// LoginView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->systemLogin);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Controls->Add(this->systemLogin);
+			this->Controls->Add(this->PasswordTextBox);
+			this->Controls->Add(this->UsernameTextBox);
+			this->Controls->Add(this->PasswordLabel);
+			this->Controls->Add(this->UsernameLabel);
+			this->Controls->Add(this->TitleLabel);
 			this->Name = L"LoginView";
 			this->Text = L"MyForm";
 			this->ResumeLayout(false);
@@ -136,15 +162,123 @@ namespace CSCI222_Assn2 {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Do something with login button
+	private: System::Void systemLogin_Click(System::Object^  sender, System::EventArgs^  e) {
+		// To validate if Member or Admin, read AccountDB file
+		std::ifstream myfile("AccountDB.txt");
+		std::string line;
 
-		this->Hide();
-		MemberView^ memberForm = gcnew MemberView(this);
-		memberForm->Show();
+		std::string usernameConvertToString;
+		std::string passwordConvertToString;
+		std::string account[999][6];
+
+		// For counting accounts
+		int accountCount = 0;
+		int maxAccountCount = 0;
+
+		// For counting account columns
+		int accountColumnCount = 0;
+
+		////
+		char ass[40];
+		////
+
+		char charLine[256];
+		char* accountString;
+
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				// Convert string to System string^
+				//String^ sline = gcnew String(line.c_str());
+				//TitleLabel->Text = sline;
+
+				// Change line to const char *, then use strcpy to use as charLine variable.
+				strcpy(charLine, line.c_str());
+
+				// Strtok charLine to separate the entire string with ':' as the delimiter
+				accountString = strtok(charLine, ":");
+				while (accountString != NULL)
+				{
+					// Save data as Member / Admin Object
+					account[accountCount][accountColumnCount] = accountString;
+
+					//String^ testo = gcnew String(itoa(accountColumnCount, ass, 10));
+					//label1->Text = testo;
+
+					if (accountColumnCount >= 6) {
+						// Reset count
+						accountColumnCount = 0;
+					}
+					else { accountColumnCount++; }
+					
+					accountString = strtok(NULL, ":");
+				}
+
+				accountCount++;
+			}
+			myfile.close();
+
+			// Store total account counts into maxAccountCount variable
+			maxAccountCount = accountCount;
+
+			// Get the username and password in TextBox
+			String^ usernameTextBox = UsernameTextBox->Text;
+			String^ passwordTextBox = PasswordTextBox->Text;
+
+			// Convert System String to String
+			MarshalString(usernameTextBox, usernameConvertToString);
+			MarshalString(passwordTextBox, passwordConvertToString);
+
+			for (int accountCount = 0; accountCount < maxAccountCount; accountCount++) {
+
+				//String^ sline = gcnew String(usernameConvertToString);
+				//TitleLabel->Text= sline;
+
+				// Check for Admin
+				if (usernameConvertToString == account[accountCount][1] && passwordConvertToString == account[accountCount][2] && atoi(account[accountCount][3].c_str()) == 0) {
+
+					// Go into Admin Form
+					this->Hide();
+					// Admin view missing!
+					
+				}
+				else if (usernameConvertToString == account[accountCount][1] && passwordConvertToString == account[accountCount][2] && atoi(account[accountCount][3].c_str()) >= 1) {
+					
+					// Go into Member Form
+					this->Hide();
+					MemberView^ memberForm = gcnew MemberView(this, account[accountCount][0], account[accountCount][1], account[accountCount][2], account[accountCount][3], account[accountCount][4], account[accountCount][5], account[accountCount][6]);
+					memberForm->Show();
+				}
+				else {
+					
+					// Tell user it's an invalid login
+					label1->Text = "Invalid Login!";
+				}
+			}
+
+			// Use this to test string
+			//String^ sline = gcnew String(account[2][2].c_str());
+			//TitleLabel->Text= sline;
+		}
+
+		/**/
 	}
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		// Validate Member or Admin Login
+
+	void MarshalString(String ^ s, std::string& os) {
+		using namespace Runtime::InteropServices;
+		const char* chars =
+			(const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
+		os = chars;
+		Marshal::FreeHGlobal(IntPtr((void*)chars));
+	}
+
+	void MarshalString(String ^ s, std::wstring& os) {
+		using namespace Runtime::InteropServices;
+		const wchar_t* chars =
+			(const wchar_t*)(Marshal::StringToHGlobalUni(s)).ToPointer();
+		os = chars;
+		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
 };
 }

@@ -1,3 +1,6 @@
+#include <string>
+#include <cstring>
+
 #pragma once
 
 namespace CSCI222_Assn2 {
@@ -26,10 +29,20 @@ namespace CSCI222_Assn2 {
 		}
 	// This retains the previous menu (LoginView)
 	public:
-		MemberView(System::Windows::Forms::Form^ loginView)
+		MemberView(System::Windows::Forms::Form^ loginView, std::string memberID, std::string memberUsername, std::string memberPassword, std::string memberRanking, std::string memberName, std::string memberDOB, std::string memberAddress)
 		{
 			mainForm = loginView;
+
 			InitializeComponent();
+
+			String^ s_memberID = gcnew String(memberID.c_str());
+			label9->Text = s_memberID;
+			String^ s_memberName = gcnew String(memberName.c_str());
+			label3->Text = s_memberName;
+			String^ s_memberAddress = gcnew String(memberAddress.c_str());
+			label5->Text = s_memberAddress;
+			String^ s_memberDOB = gcnew String(memberDOB.c_str());
+			label7->Text = s_memberDOB;
 		}
 
 	private: System::Windows::Forms::Form ^ mainForm;

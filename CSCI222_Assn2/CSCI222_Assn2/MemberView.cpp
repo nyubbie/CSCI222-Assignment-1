@@ -1,24 +1,14 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-
 #include "MemberView.h"
 
-using namespace std;
+// Stash
 
-// Function to read Member Database (MemberDB.txt)
-string readMemberFile() {
-
-// Read member file
-ifstream myfile("MemberDB.txt");
-
-string line;
-if (myfile.is_open())
-{
-	while (getline(myfile, line))
-	{
-		return line;
-	}
-	myfile.close();
-}
-}
+// Check if file exists
+//bool fileExists(const std::string& filename)
+//{
+//	struct stat buf;
+//	if (stat(filename.c_str(), &buf) != -1)
+//	{
+//		return true;
+//	}
+//	return false;
+//}
