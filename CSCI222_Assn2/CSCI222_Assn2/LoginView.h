@@ -6,6 +6,7 @@
 #include <string>
 
 #include "MemberView.h"
+#include "AdminView.h"
 
 namespace CSCI222_Assn2 {
 
@@ -42,25 +43,12 @@ namespace CSCI222_Assn2 {
 			}
 		}
 	private: System::Windows::Forms::Label^  TitleLabel;
-	protected:
-
 	private: System::Windows::Forms::Label^  UsernameLabel;
 	private: System::Windows::Forms::Label^  PasswordLabel;
 	private: System::Windows::Forms::TextBox^  UsernameTextBox;
 	private: System::Windows::Forms::TextBox^  PasswordTextBox;
-
-	protected:
-
-
-
-
-
 	private: System::Windows::Forms::Button^  systemLogin;
 	private: System::Windows::Forms::Label^  label1;
-
-
-
-	protected:
 
 	private:
 		/// <summary>
@@ -165,10 +153,14 @@ namespace CSCI222_Assn2 {
 	private: System::Void systemLogin_Click(System::Object^  sender, System::EventArgs^  e) {
 		// To validate if Member or Admin, read AccountDB file
 		std::ifstream myfile("AccountDB.txt");
+
 		std::string line;
+		char charLine[256];
+		char* accountString;
 
 		std::string usernameConvertToString;
 		std::string passwordConvertToString;
+
 		std::string account[999][6];
 
 		// For counting accounts
@@ -178,12 +170,9 @@ namespace CSCI222_Assn2 {
 		// For counting account columns
 		int accountColumnCount = 0;
 
+		//// testing
+		//char ass[40];
 		////
-		char ass[40];
-		////
-
-		char charLine[256];
-		char* accountString;
 
 		if (myfile.is_open())
 		{
@@ -203,9 +192,11 @@ namespace CSCI222_Assn2 {
 					// Save data as Member / Admin Object
 					account[accountCount][accountColumnCount] = accountString;
 
+					// testing
 					//String^ testo = gcnew String(itoa(accountColumnCount, ass, 10));
 					//label1->Text = testo;
 
+					// Only 7 columns
 					if (accountColumnCount >= 6) {
 						// Reset count
 						accountColumnCount = 0;
@@ -230,6 +221,7 @@ namespace CSCI222_Assn2 {
 			MarshalString(usernameTextBox, usernameConvertToString);
 			MarshalString(passwordTextBox, passwordConvertToString);
 
+			// Loop through accounts
 			for (int accountCount = 0; accountCount < maxAccountCount; accountCount++) {
 
 				//String^ sline = gcnew String(usernameConvertToString);
@@ -240,7 +232,8 @@ namespace CSCI222_Assn2 {
 
 					// Go into Admin Form
 					this->Hide();
-					// Admin view missing!
+					AdminView^ adminForm = gcnew AdminView(this, account[accountCount][0], account[accountCount][1], account[accountCount][2], account[accountCount][3], account[accountCount][4], account[accountCount][5], account[accountCount][6]);
+					adminForm->Show();
 					
 				}
 				else if (usernameConvertToString == account[accountCount][1] && passwordConvertToString == account[accountCount][2] && atoi(account[accountCount][3].c_str()) >= 1) {
@@ -257,7 +250,7 @@ namespace CSCI222_Assn2 {
 				}
 			}
 
-			// Use this to test string
+			// testing
 			//String^ sline = gcnew String(account[2][2].c_str());
 			//TitleLabel->Text= sline;
 		}

@@ -24,6 +24,15 @@
     <ClInclude Include="EditView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AdminView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateMemberView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EditMemberView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LoginView.resx">
@@ -44,6 +53,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EditView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateMemberView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

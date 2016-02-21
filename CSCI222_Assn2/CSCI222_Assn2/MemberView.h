@@ -36,20 +36,15 @@ namespace CSCI222_Assn2 {
 			InitializeComponent();
 
 			String^ s_memberID = gcnew String(memberID.c_str());
-			label9->Text = s_memberID;
+			MemberIDLabel->Text = s_memberID;
 			String^ s_memberName = gcnew String(memberName.c_str());
-			label3->Text = s_memberName;
+			NameLabel->Text = s_memberName;
 			String^ s_memberAddress = gcnew String(memberAddress.c_str());
-			label5->Text = s_memberAddress;
+			AddressLabel->Text = s_memberAddress;
 			String^ s_memberDOB = gcnew String(memberDOB.c_str());
-			label7->Text = s_memberDOB;
+			DOBLabel->Text = s_memberDOB;
 		}
 	private: System::Windows::Forms::Button^  MakeBookingButton;
-	public:
-
-	public:
-
-	public:
 
 	private: System::Windows::Forms::Form ^ mainForm;
 
@@ -64,15 +59,27 @@ namespace CSCI222_Assn2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::Label^  label4;
-	private: System::Windows::Forms::Label^  label5;
-	private: System::Windows::Forms::Label^  label6;
-	private: System::Windows::Forms::Label^  label7;
-	private: System::Windows::Forms::Label^  label8;
-	private: System::Windows::Forms::Label^  label9;
+	private: System::Windows::Forms::Label^  MemberPageTitle;
+	private: System::Windows::Forms::Label^  MemberNameTitle;
+	protected:
+
+	protected:
+
+
+	private: System::Windows::Forms::Label^  NameLabel;
+	private: System::Windows::Forms::Label^  MemberAddressTitle;
+
+
+	private: System::Windows::Forms::Label^  AddressLabel;
+	private: System::Windows::Forms::Label^  DOBTitle;
+
+
+	private: System::Windows::Forms::Label^  DOBLabel;
+	private: System::Windows::Forms::Label^  MemberIDTitle;
+
+
+	private: System::Windows::Forms::Label^  MemberIDLabel;
+
 	private: System::Windows::Forms::Button^  editMemberName;
 	private: System::Windows::Forms::Button^  editMemberAddress;
 	private: System::Windows::Forms::Button^  editMemberDOB;
@@ -94,15 +101,15 @@ namespace CSCI222_Assn2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->MemberPageTitle = (gcnew System::Windows::Forms::Label());
+			this->MemberNameTitle = (gcnew System::Windows::Forms::Label());
+			this->NameLabel = (gcnew System::Windows::Forms::Label());
+			this->MemberAddressTitle = (gcnew System::Windows::Forms::Label());
+			this->AddressLabel = (gcnew System::Windows::Forms::Label());
+			this->DOBTitle = (gcnew System::Windows::Forms::Label());
+			this->DOBLabel = (gcnew System::Windows::Forms::Label());
+			this->MemberIDTitle = (gcnew System::Windows::Forms::Label());
+			this->MemberIDLabel = (gcnew System::Windows::Forms::Label());
 			this->editMemberName = (gcnew System::Windows::Forms::Button());
 			this->editMemberAddress = (gcnew System::Windows::Forms::Button());
 			this->editMemberDOB = (gcnew System::Windows::Forms::Button());
@@ -110,87 +117,87 @@ namespace CSCI222_Assn2 {
 			this->MakeBookingButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// label1
+			// MemberPageTitle
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(190, 31);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(267, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Country Club Facilities Booking System (Member Page) ";
+			this->MemberPageTitle->AutoSize = true;
+			this->MemberPageTitle->Location = System::Drawing::Point(190, 31);
+			this->MemberPageTitle->Name = L"MemberPageTitle";
+			this->MemberPageTitle->Size = System::Drawing::Size(267, 13);
+			this->MemberPageTitle->TabIndex = 0;
+			this->MemberPageTitle->Text = L"Country Club Facilities Booking System (Member Page) ";
 			// 
-			// label2
+			// MemberNameTitle
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(345, 85);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(38, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"Name:";
+			this->MemberNameTitle->AutoSize = true;
+			this->MemberNameTitle->Location = System::Drawing::Point(345, 85);
+			this->MemberNameTitle->Name = L"MemberNameTitle";
+			this->MemberNameTitle->Size = System::Drawing::Size(38, 13);
+			this->MemberNameTitle->TabIndex = 1;
+			this->MemberNameTitle->Text = L"Name:";
 			// 
-			// label3
+			// NameLabel
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(422, 85);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(35, 13);
-			this->label3->TabIndex = 2;
-			this->label3->Text = L"label3";
+			this->NameLabel->AutoSize = true;
+			this->NameLabel->Location = System::Drawing::Point(422, 85);
+			this->NameLabel->Name = L"NameLabel";
+			this->NameLabel->Size = System::Drawing::Size(23, 13);
+			this->NameLabel->TabIndex = 2;
+			this->NameLabel->Text = L"null";
 			// 
-			// label4
+			// MemberAddressTitle
 			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(32, 123);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(48, 13);
-			this->label4->TabIndex = 3;
-			this->label4->Text = L"Address:";
+			this->MemberAddressTitle->AutoSize = true;
+			this->MemberAddressTitle->Location = System::Drawing::Point(32, 123);
+			this->MemberAddressTitle->Name = L"MemberAddressTitle";
+			this->MemberAddressTitle->Size = System::Drawing::Size(48, 13);
+			this->MemberAddressTitle->TabIndex = 3;
+			this->MemberAddressTitle->Text = L"Address:";
 			// 
-			// label5
+			// AddressLabel
 			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(136, 123);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(35, 13);
-			this->label5->TabIndex = 4;
-			this->label5->Text = L"label5";
+			this->AddressLabel->AutoSize = true;
+			this->AddressLabel->Location = System::Drawing::Point(136, 123);
+			this->AddressLabel->Name = L"AddressLabel";
+			this->AddressLabel->Size = System::Drawing::Size(23, 13);
+			this->AddressLabel->TabIndex = 4;
+			this->AddressLabel->Text = L"null";
 			// 
-			// label6
+			// DOBTitle
 			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(32, 161);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(69, 13);
-			this->label6->TabIndex = 5;
-			this->label6->Text = L"Date of Birth:";
-			this->label6->UseMnemonic = false;
+			this->DOBTitle->AutoSize = true;
+			this->DOBTitle->Location = System::Drawing::Point(32, 161);
+			this->DOBTitle->Name = L"DOBTitle";
+			this->DOBTitle->Size = System::Drawing::Size(69, 13);
+			this->DOBTitle->TabIndex = 5;
+			this->DOBTitle->Text = L"Date of Birth:";
+			this->DOBTitle->UseMnemonic = false;
 			// 
-			// label7
+			// DOBLabel
 			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(136, 161);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(35, 13);
-			this->label7->TabIndex = 6;
-			this->label7->Text = L"label7";
+			this->DOBLabel->AutoSize = true;
+			this->DOBLabel->Location = System::Drawing::Point(136, 161);
+			this->DOBLabel->Name = L"DOBLabel";
+			this->DOBLabel->Size = System::Drawing::Size(23, 13);
+			this->DOBLabel->TabIndex = 6;
+			this->DOBLabel->Text = L"null";
 			// 
-			// label8
+			// MemberIDTitle
 			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(32, 85);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(59, 13);
-			this->label8->TabIndex = 7;
-			this->label8->Text = L"MemberID:";
+			this->MemberIDTitle->AutoSize = true;
+			this->MemberIDTitle->Location = System::Drawing::Point(32, 85);
+			this->MemberIDTitle->Name = L"MemberIDTitle";
+			this->MemberIDTitle->Size = System::Drawing::Size(59, 13);
+			this->MemberIDTitle->TabIndex = 7;
+			this->MemberIDTitle->Text = L"MemberID:";
 			// 
-			// label9
+			// MemberIDLabel
 			// 
-			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(136, 85);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(35, 13);
-			this->label9->TabIndex = 8;
-			this->label9->Text = L"label9";
+			this->MemberIDLabel->AutoSize = true;
+			this->MemberIDLabel->Location = System::Drawing::Point(136, 85);
+			this->MemberIDLabel->Name = L"MemberIDLabel";
+			this->MemberIDLabel->Size = System::Drawing::Size(23, 13);
+			this->MemberIDLabel->TabIndex = 8;
+			this->MemberIDLabel->Text = L"null";
 			// 
 			// editMemberName
 			// 
@@ -251,15 +258,15 @@ namespace CSCI222_Assn2 {
 			this->Controls->Add(this->editMemberDOB);
 			this->Controls->Add(this->editMemberAddress);
 			this->Controls->Add(this->editMemberName);
-			this->Controls->Add(this->label9);
-			this->Controls->Add(this->label8);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->MemberIDLabel);
+			this->Controls->Add(this->MemberIDTitle);
+			this->Controls->Add(this->DOBLabel);
+			this->Controls->Add(this->DOBTitle);
+			this->Controls->Add(this->AddressLabel);
+			this->Controls->Add(this->MemberAddressTitle);
+			this->Controls->Add(this->NameLabel);
+			this->Controls->Add(this->MemberNameTitle);
+			this->Controls->Add(this->MemberPageTitle);
 			this->Name = L"MemberView";
 			this->Text = L"MemberView";
 			this->ResumeLayout(false);

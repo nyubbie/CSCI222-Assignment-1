@@ -134,11 +134,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdminView.cpp" />
+    <ClCompile Include="CreateMemberView.cpp" />
     <ClCompile Include="EditView.cpp" />
     <ClCompile Include="LoginView.cpp" />
     <ClCompile Include="MemberView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="CreateMemberView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="EditMemberView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="EditView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -150,6 +161,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdminView.resx">
+      <DependentUpon>AdminView.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateMemberView.resx">
+      <DependentUpon>CreateMemberView.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditMemberView.resx">
+      <DependentUpon>EditMemberView.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditView.resx">
       <DependentUpon>EditView.h</DependentUpon>
     </EmbeddedResource>
