@@ -139,6 +139,7 @@
     <ClCompile Include="EditView.cpp" />
     <ClCompile Include="LoginView.cpp" />
     <ClCompile Include="MemberView.cpp" />
+    <ClCompile Include="SearchMemberView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdminView.h">
@@ -157,6 +158,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MemberView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SearchMemberView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -178,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MemberView.resx">
       <DependentUpon>MemberView.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchMemberView.resx">
+      <DependentUpon>SearchMemberView.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

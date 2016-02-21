@@ -161,7 +161,7 @@ namespace CSCI222_Assn2 {
 		std::string usernameConvertToString;
 		std::string passwordConvertToString;
 
-		std::string account[999][6];
+		std::string account[999][7];
 
 		// For counting accounts
 		int accountCount = 0;

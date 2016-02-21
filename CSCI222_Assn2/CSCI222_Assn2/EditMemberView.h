@@ -346,7 +346,7 @@ namespace CSCI222_Assn2 {
 		char charLine[256];
 		char* accountString;
 
-		std::string account[999][6];
+		std::string account[999][7];
 
 		// For counting accounts
 		int accountCount = 0;
@@ -392,7 +392,7 @@ namespace CSCI222_Assn2 {
 				// Check for Member, no Admin will exist here
 				if (retainMemberID == account[accountCount][0] && atoi(account[accountCount][3].c_str()) >= 1) {
 
-					// Insert new values into 
+					// Insert new values into account
 					account[accountCount][0] = memberIDConvertToString;
 					account[accountCount][1] = usernameConvertToString;
 					account[accountCount][2] = passwordConvertToString;
@@ -406,7 +406,7 @@ namespace CSCI222_Assn2 {
 				}
 			}
 
-			// Needs fixing (LEFT OFF)
+			// Overwrite AccountDB.txt
 			std::ofstream overwriteFile("AccountDB.txt");
 			if (overwriteFile.is_open()) {
 				// Loop through accounts for file output

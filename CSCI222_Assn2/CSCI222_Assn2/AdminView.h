@@ -3,6 +3,7 @@
 
 #include "CreateMemberView.h"
 #include "EditMemberView.h"
+#include "SearchMemberView.h"
 
 #pragma once
 
@@ -173,6 +174,7 @@ namespace CSCI222_Assn2 {
 			this->DeleteMemberButton->TabIndex = 8;
 			this->DeleteMemberButton->Text = L"Delete Member";
 			this->DeleteMemberButton->UseVisualStyleBackColor = true;
+			this->DeleteMemberButton->Click += gcnew System::EventHandler(this, &AdminView::DeleteMemberButton_Click);
 			// 
 			// SearchMemberButton
 			// 
@@ -182,6 +184,7 @@ namespace CSCI222_Assn2 {
 			this->SearchMemberButton->TabIndex = 9;
 			this->SearchMemberButton->Text = L"Search Member";
 			this->SearchMemberButton->UseVisualStyleBackColor = true;
+			this->SearchMemberButton->Click += gcnew System::EventHandler(this, &AdminView::SearchMemberButton_Click);
 			// 
 			// MemberIDTitle
 			// 
@@ -261,7 +264,7 @@ namespace CSCI222_Assn2 {
 		char charLine[256];
 		char* accountString;
 
-		std::string account[999][6];
+		std::string account[999][7];
 
 		// For counting accounts
 		int accountCount = 0;
@@ -330,6 +333,198 @@ namespace CSCI222_Assn2 {
 		}
 	}
 
+	
+	private: System::Void SearchMemberButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+		// Declare strings for conversion
+		std::string memberIDConvertToString;
+
+		// Get ID entered from MemberIDTextBox
+		String^ memberIDTextBox = MemberIDTextBox->Text;
+
+		// Convert System String to String
+		MarshalString(memberIDTextBox, memberIDConvertToString);
+
+		// Read AccountDB file
+		std::ifstream myfile("AccountDB.txt");
+
+		std::string line;
+		char charLine[256];
+		char* accountString;
+
+		std::string account[999][7];
+
+		// For counting accounts
+		int accountCount = 0;
+		int maxAccountCount = 0;
+
+		// For counting account columns
+		int accountColumnCount = 0;
+
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				// Change line to const char *, then use strcpy to use as charLine variable.
+				strcpy(charLine, line.c_str());
+
+				// Strtok charLine to separate the entire string with ':' as the delimiter
+				accountString = strtok(charLine, ":");
+				while (accountString != NULL)
+				{
+					// Save data as Member / Admin Object
+					account[accountCount][accountColumnCount] = accountString;
+
+					// Only 7 columns
+					if (accountColumnCount >= 6) {
+						// Reset count
+						accountColumnCount = 0;
+					}
+					else { accountColumnCount++; }
+
+					accountString = strtok(NULL, ":");
+				}
+
+				accountCount++;
+			}
+			myfile.close();
+
+			// Store total account counts into maxAccountCount variable
+			maxAccountCount = accountCount;
+
+			// Loop through accounts
+			for (int accountCount = 0; accountCount < maxAccountCount; accountCount++) {
+
+				// Check for Admin
+				if (memberIDConvertToString == account[accountCount][0] && atoi(account[accountCount][3].c_str()) == 0) {
+
+					// Alert user this is an Admin
+					MemberNotFoundTitle->Text = "This is an Admin ID!";
+
+				}
+				// Check for Member
+				else if (memberIDConvertToString == account[accountCount][0] && atoi(account[accountCount][3].c_str()) >= 1) {
+
+					// Go into Search Member Form
+					this->Hide();
+					SearchMemberView^ searchMemberForm = gcnew SearchMemberView(this, account[accountCount][0], account[accountCount][1], account[accountCount][2], account[accountCount][3], account[accountCount][4], account[accountCount][5], account[accountCount][6]);
+					searchMemberForm->Show();
+				}
+				else {
+
+					// Tell user it's an invalid ID
+					MemberNotFoundTitle->Text = "This is an invalid ID!";
+				}
+			}
+		}
+	}
+	private: System::Void DeleteMemberButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Declare strings for conversion
+		std::string memberIDConvertToString;
+
+		// Get ID entered from MemberIDTextBox
+		String^ memberIDTextBox = MemberIDTextBox->Text;
+
+		// Convert System String to String
+		MarshalString(memberIDTextBox, memberIDConvertToString);
+
+		// Read AccountDB file
+		std::ifstream myfile("AccountDB.txt");
+
+		std::string line;
+		char charLine[256];
+		char* accountString;
+
+		std::string account[999][7];
+
+		// For counting accounts
+		int accountCount = 0;
+		int maxAccountCount = 0;
+
+		// For counting account columns
+		int accountColumnCount = 0;
+
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				// Change line to const char *, then use strcpy to use as charLine variable.
+				strcpy(charLine, line.c_str());
+
+				// Strtok charLine to separate the entire string with ':' as the delimiter
+				accountString = strtok(charLine, ":");
+				while (accountString != NULL)
+				{
+					// Save data as Member / Admin Object
+					account[accountCount][accountColumnCount] = accountString;
+
+					// Only 7 columns
+					if (accountColumnCount >= 6) {
+						// Reset count
+						accountColumnCount = 0;
+					}
+					else { accountColumnCount++; }
+
+					accountString = strtok(NULL, ":");
+				}
+
+				accountCount++;
+			}
+			myfile.close();
+
+			// Store total account counts into maxAccountCount variable
+			maxAccountCount = accountCount;
+
+			// Loop through accounts
+			for (int accountCount = 0; accountCount < maxAccountCount; accountCount++) {
+
+				// Check for Admin
+				if (memberIDConvertToString == account[accountCount][0] && atoi(account[accountCount][3].c_str()) == 0) {
+
+					// Alert user this is an Admin
+					MemberNotFoundTitle->Text = "This is an Admin ID!";
+
+				}
+				// Check for Member
+				else if (memberIDConvertToString == account[accountCount][0] && atoi(account[accountCount][3].c_str()) >= 1) {
+
+					// Set Member to "invalid" for further handling
+					account[accountCount][0] = "invalid";
+					account[accountCount][1] = "invalid";
+					account[accountCount][2] = "invalid";
+					account[accountCount][3] = "invalid";
+					account[accountCount][4] = "invalid";
+					account[accountCount][5] = "invalid";
+					account[accountCount][6] = "invalid";
+				}
+				else {
+					// Tell user it's an invalid ID
+					MemberNotFoundTitle->Text = "This is an invalid ID!";
+				}
+
+				// Overwrite AccountDB.txt
+				std::ofstream overwriteFile("AccountDB.txt");
+				if (overwriteFile.is_open()) {
+					// Loop through accounts for file output
+					for (int accountCount = 0; accountCount < maxAccountCount; accountCount++) {
+						// Loop through account columns as well
+						for (int accountColumnCount = 0; accountColumnCount < 7; accountColumnCount++) {
+							if (accountColumnCount <= 5 && account[accountCount][accountColumnCount] != "invalid") {
+								overwriteFile << account[accountCount][accountColumnCount] << ":";
+							}
+							else if (accountColumnCount == 6 && account[accountCount][accountColumnCount] != "invalid") {
+								overwriteFile << account[accountCount][accountColumnCount] << "\n";
+							}
+						}
+					}
+				}
+				overwriteFile.close();
+
+				// Alert user member removed
+				MemberNotFoundTitle->Text = "Member removed!";
+			}
+		}
+	}
 	void MarshalString(String ^ s, std::string& os) {
 		using namespace Runtime::InteropServices;
 		const char* chars =
