@@ -44,6 +44,12 @@ namespace CSCI222_Assn2 {
 			String^ s_memberDOB = gcnew String(memberDOB.c_str());
 			label7->Text = s_memberDOB;
 		}
+	private: System::Windows::Forms::Button^  MakeBookingButton;
+	public:
+
+	public:
+
+	public:
 
 	private: System::Windows::Forms::Form ^ mainForm;
 
@@ -101,6 +107,7 @@ namespace CSCI222_Assn2 {
 			this->editMemberAddress = (gcnew System::Windows::Forms::Button());
 			this->editMemberDOB = (gcnew System::Windows::Forms::Button());
 			this->memberLogout = (gcnew System::Windows::Forms::Button());
+			this->MakeBookingButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -225,11 +232,21 @@ namespace CSCI222_Assn2 {
 			this->memberLogout->UseVisualStyleBackColor = true;
 			this->memberLogout->Click += gcnew System::EventHandler(this, &MemberView::memberLogout_Click);
 			// 
+			// MakeBookingButton
+			// 
+			this->MakeBookingButton->Location = System::Drawing::Point(348, 197);
+			this->MakeBookingButton->Name = L"MakeBookingButton";
+			this->MakeBookingButton->Size = System::Drawing::Size(126, 23);
+			this->MakeBookingButton->TabIndex = 13;
+			this->MakeBookingButton->Text = L"Make Booking";
+			this->MakeBookingButton->UseVisualStyleBackColor = true;
+			// 
 			// MemberView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(656, 261);
+			this->Controls->Add(this->MakeBookingButton);
 			this->Controls->Add(this->memberLogout);
 			this->Controls->Add(this->editMemberDOB);
 			this->Controls->Add(this->editMemberAddress);
