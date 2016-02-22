@@ -96,9 +96,9 @@ namespace CSCI222_Assn2 {
 
 	private: System::Windows::Forms::Label^  MemberIDLabel;
 
-	private: System::Windows::Forms::Button^  editMemberName;
-	private: System::Windows::Forms::Button^  editMemberAddress;
-	private: System::Windows::Forms::Button^  editMemberDOB;
+
+
+
 	private: System::Windows::Forms::Button^  memberLogout;
 
 
@@ -126,9 +126,6 @@ namespace CSCI222_Assn2 {
 			this->DOBLabel = (gcnew System::Windows::Forms::Label());
 			this->MemberIDTitle = (gcnew System::Windows::Forms::Label());
 			this->MemberIDLabel = (gcnew System::Windows::Forms::Label());
-			this->editMemberName = (gcnew System::Windows::Forms::Button());
-			this->editMemberAddress = (gcnew System::Windows::Forms::Button());
-			this->editMemberDOB = (gcnew System::Windows::Forms::Button());
 			this->memberLogout = (gcnew System::Windows::Forms::Button());
 			this->MakeBookingButton = (gcnew System::Windows::Forms::Button());
 			this->MemberRankingTitle = (gcnew System::Windows::Forms::Label());
@@ -217,36 +214,6 @@ namespace CSCI222_Assn2 {
 			this->MemberIDLabel->TabIndex = 8;
 			this->MemberIDLabel->Text = L"null";
 			// 
-			// editMemberName
-			// 
-			this->editMemberName->Location = System::Drawing::Point(514, 80);
-			this->editMemberName->Name = L"editMemberName";
-			this->editMemberName->Size = System::Drawing::Size(75, 23);
-			this->editMemberName->TabIndex = 9;
-			this->editMemberName->Text = L"Edit Name";
-			this->editMemberName->UseVisualStyleBackColor = true;
-			this->editMemberName->Click += gcnew System::EventHandler(this, &MemberView::editMemberName_Click);
-			// 
-			// editMemberAddress
-			// 
-			this->editMemberAddress->Location = System::Drawing::Point(514, 118);
-			this->editMemberAddress->Name = L"editMemberAddress";
-			this->editMemberAddress->Size = System::Drawing::Size(75, 23);
-			this->editMemberAddress->TabIndex = 10;
-			this->editMemberAddress->Text = L"Edit Address";
-			this->editMemberAddress->UseVisualStyleBackColor = true;
-			this->editMemberAddress->Click += gcnew System::EventHandler(this, &MemberView::editMemberAddress_Click);
-			// 
-			// editMemberDOB
-			// 
-			this->editMemberDOB->Location = System::Drawing::Point(514, 156);
-			this->editMemberDOB->Name = L"editMemberDOB";
-			this->editMemberDOB->Size = System::Drawing::Size(75, 23);
-			this->editMemberDOB->TabIndex = 11;
-			this->editMemberDOB->Text = L"Edit DOB";
-			this->editMemberDOB->UseVisualStyleBackColor = true;
-			this->editMemberDOB->Click += gcnew System::EventHandler(this, &MemberView::editMemberDOB_Click);
-			// 
 			// memberLogout
 			// 
 			this->memberLogout->Location = System::Drawing::Point(514, 197);
@@ -294,9 +261,6 @@ namespace CSCI222_Assn2 {
 			this->Controls->Add(this->MemberRankingTitle);
 			this->Controls->Add(this->MakeBookingButton);
 			this->Controls->Add(this->memberLogout);
-			this->Controls->Add(this->editMemberDOB);
-			this->Controls->Add(this->editMemberAddress);
-			this->Controls->Add(this->editMemberName);
 			this->Controls->Add(this->MemberIDLabel);
 			this->Controls->Add(this->MemberIDTitle);
 			this->Controls->Add(this->DOBLabel);

@@ -129,25 +129,19 @@ namespace CSCI222_Assn2 {
 			// 0800 1000 1200 1400 1600 1800 2000 2200
 
 			// Just add Time
-			TimeComboBox->Items->Add("8:00AM");
-			TimeComboBox->Items->Add("10:00AM");
-			TimeComboBox->Items->Add("12:00PM");
-			TimeComboBox->Items->Add("2:00PM");
-			TimeComboBox->Items->Add("4:00PM");
-			TimeComboBox->Items->Add("6:00PM");
-			TimeComboBox->Items->Add("8:00PM");
-			TimeComboBox->Items->Add("10:00PM");
+			TimeComboBox->Items->Add("8AM");
+			TimeComboBox->Items->Add("10AM");
+			TimeComboBox->Items->Add("12PM");
+			TimeComboBox->Items->Add("2PM");
+			TimeComboBox->Items->Add("4PM");
+			TimeComboBox->Items->Add("6PM");
+			TimeComboBox->Items->Add("8PM");
+			TimeComboBox->Items->Add("10PM");
 
 			//////////////////////////////////
 			// End of Populate TimeComboBox
 			//////////////////////////////////
 
-			/*String^ s_memberName = gcnew String(memberName.c_str());
-			NameLabel->Text = s_memberName;
-			String^ s_memberAddress = gcnew String(memberAddress.c_str());
-			AddressLabel->Text = s_memberAddress;
-			String^ s_memberDOB = gcnew String(memberDOB.c_str());
-			DOBLabel->Text = s_memberDOB;*/
 		}
 	private: System::Windows::Forms::Button^  MakeBookingButton;
 	private: System::Windows::Forms::Label^  DateTitle;
@@ -190,7 +184,9 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 	private: System::Windows::Forms::ComboBox^  BookingFacilityComboBox;
 	private: System::Windows::Forms::Label^  TimeTitle;
 
-
+	private: String^ s_facilitySelected;
+	private: String^ s_dateSelected;
+	private: String^ s_timeSelected;
 
 	protected:
 
@@ -395,10 +391,263 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 		// MemberID must be passed from previous form
 		std::string retainMemberID;
 		MarshalString(MemberID, retainMemberID);
-		
-		// Clicking on booking button will generate booking in BookingDB
-		//s_dateSelected;
-		//s_timeSelected;
+
+		// Make sure faciity, date and time are selected
+		if (s_facilitySelected && s_dateSelected && s_timeSelected) {
+
+			// Loop facilities first to match FacilitiesID
+			std::string facilitySelectedConvertToString;
+			std::string dateSelectedConvertToString;
+			std::string timeSelectedConvertToString;
+
+			// Convert selected ComboBox System String^ to String
+			MarshalString(s_facilitySelected, facilitySelectedConvertToString);
+			MarshalString(s_dateSelected, dateSelectedConvertToString);
+			MarshalString(s_timeSelected, timeSelectedConvertToString);
+
+			// Read FacilitiesDB file
+			std::ifstream myfile("FacilityDB.txt");
+			std::string line;
+
+			char charLine[256];
+			char* facilityString;
+
+			std::string facility[999][4];
+
+			// For counting accounts
+			int facilityCount = 0;
+			int maxFacilityCount = 0;
+
+			// For counting account columns
+			int facilityColumnCount = 0;
+
+			// Open FacilitiesDB file
+			if (myfile.is_open())
+			{
+				while (getline(myfile, line))
+				{
+					// Change line to const char *, then use strcpy to use as charLine variable.
+					strcpy(charLine, line.c_str());
+
+					// Strtok charLine to separate the entire string with ':' as the delimiter
+					facilityString = strtok(charLine, ":");
+					while (facilityString != NULL)
+					{
+						// Save data as Member / Admin Object
+						facility[facilityCount][facilityColumnCount] = facilityString;
+
+						// Only 4 columns
+						if (facilityColumnCount >= 3) {
+							// Reset count
+							facilityColumnCount = 0;
+						}
+						else { facilityColumnCount++; }
+
+						facilityString = strtok(NULL, ":");
+					}
+
+					facilityCount++;
+				}
+				myfile.close();
+
+				// Store total account counts into maxAccountCount variable
+				maxFacilityCount = facilityCount;
+
+				// Loop through facilities
+				for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+
+					// Check for Facility name match (ID found for facility)
+					if (facilitySelectedConvertToString == facility[facilityCount][1]) {
+
+						// Get the Facility ID
+						//facility[facilityCount][0];
+
+						// Get the Facility name
+						//facility[facilityCount][2];
+
+						// Peak Hour
+						//facility[facilityCount][2];
+
+						// Off Peak Hour
+						//facility[facilityCount][3];
+
+						// Do booking loop, also check for duplicates on the way
+						// Read BookingDB file after FacilityID has been established
+						std::ifstream myfile2("BookingDB.txt");
+						std::string line;
+
+						char charLine[256];
+						char* bookingString;
+
+						std::string booking[999][5];
+
+						// For counting accounts
+						int bookingCount = 0;
+						int maxBookingCount = 0;
+
+						// For counting account columns
+						int bookingColumnCount = 0;
+
+						if (myfile2.is_open())
+						{
+							while (getline(myfile2, line))
+							{
+								// Change line to const char *, then use strcpy to use as charLine variable.
+								strcpy(charLine, line.c_str());
+
+								// Strtok charLine to separate the entire string with ':' as the delimiter
+								bookingString = strtok(charLine, ":");
+								while (bookingString != NULL)
+								{
+									// Save data as Member / Admin Object
+									booking[bookingCount][bookingColumnCount] = bookingString;
+
+									// Only 5 columns
+									if (bookingColumnCount >= 4) {
+										// Reset count
+										bookingColumnCount = 0;
+									}
+									else { bookingColumnCount++; }
+
+									bookingString = strtok(NULL, ":");
+								}
+
+								bookingCount++;
+							}
+							myfile2.close();
+
+							// Store total account counts into maxAccountCount variable
+							maxBookingCount = bookingCount;
+
+							// Needs additional logic to link Facility (ID) to s_facilitySelected (name) value
+
+							// Loop through booking
+							for (int bookingCount = 0; bookingCount < maxBookingCount; bookingCount++) {
+
+								// Generate random bookingID
+								int bookingNum = rand() % 999 + 1;
+								std::string bookingGeneratedString = std::to_string(bookingNum);
+
+								//// Re-generate if bookingID is the same
+								//if (bookingGeneratedString == booking[bookingCount][0]) {
+								//	int bookingNum = rand() % 999 + 1;
+								//	std::string bookingGeneratedString = std::to_string(bookingNum);
+								//}
+
+								// bookingID:memberID:facilityID:date:startTime
+								// Check for Booking Facility, Date and Time clash
+								if (facility[facilityCount][0] != booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+
+									//bookingCount++;
+									//maxBookingCount++;
+
+									// Insert new values into account
+									booking[maxBookingCount + 1][0] = bookingGeneratedString;
+									booking[maxBookingCount + 1][1] = retainMemberID;
+									booking[maxBookingCount + 1][2] = facility[facilityCount][0];
+									booking[maxBookingCount + 1][3] = dateSelectedConvertToString;
+									booking[maxBookingCount + 1][4] = timeSelectedConvertToString;
+								}
+								else if (facility[facilityCount][0] == booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+
+									//bookingCount++;
+									//maxBookingCount++;
+
+									// Insert new values into account
+									booking[maxBookingCount+1][0] = bookingGeneratedString;
+									booking[maxBookingCount+1][1] = retainMemberID;
+									booking[maxBookingCount+1][2] = facility[facilityCount][0];
+									booking[maxBookingCount+1][3] = dateSelectedConvertToString;
+									booking[maxBookingCount+1][4] = timeSelectedConvertToString;
+								}
+								else {
+									// This is a duplicate!
+									BookingAvailableLabel->Text = "No";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+							}
+						}
+						// Overwrite BookingDB.txt
+						std::ofstream overwriteFile("BookingDB.txt");
+						if (overwriteFile.is_open()) {
+							// Loop through accounts for file output
+							for (int bookingCount = 0; bookingCount < maxBookingCount + 2; bookingCount++) {
+								// Loop through account columns as well
+								for (int bookingColumnCount = 0; bookingColumnCount < 5; bookingColumnCount++) {
+									if (bookingColumnCount <= 3) {
+										overwriteFile << booking[bookingCount][bookingColumnCount] << ":";
+									}
+									else if (bookingColumnCount == 4) {
+										overwriteFile << booking[bookingCount][bookingColumnCount] << "\n";
+									}
+								}
+							}
+						}
+						overwriteFile.close();
+					}
+					else {
+						// Do Nothing
+					}
+				}
+			}
+
+			// Go back to Member View
+			memberForm->Show();
+			this->Close();
+		}
 	}
 
 	private: System::Void CancelButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -423,18 +672,630 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
 	private: System::Void BookingFacilityComboBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+
+		// Get user selected option for Facility
+		s_facilitySelected = BookingFacilityComboBox->SelectedItem->ToString();
+
+		// Make sure faciity, date and time are selected
+		if (s_facilitySelected && s_dateSelected && s_timeSelected) {
+
+			// Loop facilities first to match FacilitiesID
+			std::string facilitySelectedConvertToString;
+			std::string dateSelectedConvertToString;
+			std::string timeSelectedConvertToString;
+
+			// Convert selected ComboBox System String^ to String
+			MarshalString(s_facilitySelected, facilitySelectedConvertToString);
+			MarshalString(s_dateSelected, dateSelectedConvertToString);
+			MarshalString(s_timeSelected, timeSelectedConvertToString);
+
+			// Read FacilitiesDB file
+			std::ifstream myfile("FacilityDB.txt");
+			std::string line;
+
+			char charLine[256];
+			char* facilityString;
+
+			std::string facility[999][4];
+
+			// For counting accounts
+			int facilityCount = 0;
+			int maxFacilityCount = 0;
+
+			// For counting account columns
+			int facilityColumnCount = 0;
+
+			// Open FacilitiesDB file
+			if (myfile.is_open())
+			{
+				while (getline(myfile, line))
+				{
+					// Change line to const char *, then use strcpy to use as charLine variable.
+					strcpy(charLine, line.c_str());
+
+					// Strtok charLine to separate the entire string with ':' as the delimiter
+					facilityString = strtok(charLine, ":");
+					while (facilityString != NULL)
+					{
+						// Save data as Member / Admin Object
+						facility[facilityCount][facilityColumnCount] = facilityString;
+
+						// Only 4 columns
+						if (facilityColumnCount >= 3) {
+							// Reset count
+							facilityColumnCount = 0;
+						}
+						else { facilityColumnCount++; }
+
+						facilityString = strtok(NULL, ":");
+					}
+
+					facilityCount++;
+				}
+				myfile.close();
+
+				// Store total account counts into maxAccountCount variable
+				maxFacilityCount = facilityCount;
+
+				// Loop through facilities
+				for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+
+					// Check for Facility name match (ID found for facility)
+					if (facilitySelectedConvertToString == facility[facilityCount][1]) {
+
+						// Get the Facility ID
+						//facility[facilityCount][0];
+
+						// Get the Facility name
+						//facility[facilityCount][2];
+
+						// Peak Hour
+						//facility[facilityCount][2];
+
+						// Off Peak Hour
+						//facility[facilityCount][3];
+
+						// Do booking loop, also check for duplicates on the way
+						// Read BookingDB file after FacilityID has been established
+						std::ifstream myfile2("BookingDB.txt");
+						std::string line;
+
+						char charLine[256];
+						char* bookingString;
+
+						std::string booking[999][5];
+
+						// For counting accounts
+						int bookingCount = 0;
+						int maxBookingCount = 0;
+
+						// For counting account columns
+						int bookingColumnCount = 0;
+
+						if (myfile2.is_open())
+						{
+							while (getline(myfile2, line))
+							{
+								// Change line to const char *, then use strcpy to use as charLine variable.
+								strcpy(charLine, line.c_str());
+
+								// Strtok charLine to separate the entire string with ':' as the delimiter
+								bookingString = strtok(charLine, ":");
+								while (bookingString != NULL)
+								{
+									// Save data as Member / Admin Object
+									booking[bookingCount][bookingColumnCount] = bookingString;
+
+									// Only 5 columns
+									if (bookingColumnCount >= 4) {
+										// Reset count
+										bookingColumnCount = 0;
+									}
+									else { bookingColumnCount++; }
+
+									bookingString = strtok(NULL, ":");
+								}
+
+								bookingCount++;
+							}
+							myfile2.close();
+
+							// Store total account counts into maxAccountCount variable
+							maxBookingCount = bookingCount;
+
+							// Needs additional logic to link Facility (ID) to s_facilitySelected (name) value
+
+							// Loop through booking
+							for (int bookingCount = 0; bookingCount < maxBookingCount; bookingCount++) {
+
+								// bookingID:memberID:facilityID:date:startTime
+								// Check for Booking Facility, Date and Time clash
+								if (facility[facilityCount][0] != booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+								else if (facility[facilityCount][0] == booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+								else {
+									// This is a duplicate!
+									BookingAvailableLabel->Text = "No";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	private: System::Void DateComboBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		//BookingAvailableLabel->Text = DateComboBox->SelectedItem->ToString();
 
 		// Get user selected option for Date
-		String^ s_dateSelected = DateComboBox->SelectedItem->ToString();
+		s_dateSelected = DateComboBox->SelectedItem->ToString();
+
+		// Make sure faciity, date and time are selected
+		if (s_facilitySelected && s_dateSelected && s_timeSelected) {
+
+			// Loop facilities first to match FacilitiesID
+			std::string facilitySelectedConvertToString;
+			std::string dateSelectedConvertToString;
+			std::string timeSelectedConvertToString;
+
+			// Convert selected ComboBox System String^ to String
+			MarshalString(s_facilitySelected, facilitySelectedConvertToString);
+			MarshalString(s_dateSelected, dateSelectedConvertToString);
+			MarshalString(s_timeSelected, timeSelectedConvertToString);
+
+			// Read FacilitiesDB file
+			std::ifstream myfile("FacilityDB.txt");
+			std::string line;
+
+			char charLine[256];
+			char* facilityString;
+
+			std::string facility[999][4];
+
+			// For counting accounts
+			int facilityCount = 0;
+			int maxFacilityCount = 0;
+
+			// For counting account columns
+			int facilityColumnCount = 0;
+
+			// Open FacilitiesDB file
+			if (myfile.is_open())
+			{
+				while (getline(myfile, line))
+				{
+					// Change line to const char *, then use strcpy to use as charLine variable.
+					strcpy(charLine, line.c_str());
+
+					// Strtok charLine to separate the entire string with ':' as the delimiter
+					facilityString = strtok(charLine, ":");
+					while (facilityString != NULL)
+					{
+						// Save data as Member / Admin Object
+						facility[facilityCount][facilityColumnCount] = facilityString;
+
+						// Only 4 columns
+						if (facilityColumnCount >= 3) {
+							// Reset count
+							facilityColumnCount = 0;
+						}
+						else { facilityColumnCount++; }
+
+						facilityString = strtok(NULL, ":");
+					}
+
+					facilityCount++;
+				}
+				myfile.close();
+
+				// Store total account counts into maxAccountCount variable
+				maxFacilityCount = facilityCount;
+
+				// Loop through facilities
+				for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+
+					// Check for Facility name match (ID found for facility)
+					if (facilitySelectedConvertToString == facility[facilityCount][1]) {
+
+						// Get the Facility ID
+						//facility[facilityCount][0];
+
+						// Get the Facility name
+						//facility[facilityCount][2];
+
+						// Peak Hour
+						//facility[facilityCount][2];
+
+						// Off Peak Hour
+						//facility[facilityCount][3];
+
+						// Do booking loop, also check for duplicates on the way
+						// Read BookingDB file after FacilityID has been established
+						std::ifstream myfile2("BookingDB.txt");
+						std::string line;
+
+						char charLine[256];
+						char* bookingString;
+
+						std::string booking[999][5];
+
+						// For counting accounts
+						int bookingCount = 0;
+						int maxBookingCount = 0;
+
+						// For counting account columns
+						int bookingColumnCount = 0;
+
+						if (myfile2.is_open())
+						{
+							while (getline(myfile2, line))
+							{
+								// Change line to const char *, then use strcpy to use as charLine variable.
+								strcpy(charLine, line.c_str());
+
+								// Strtok charLine to separate the entire string with ':' as the delimiter
+								bookingString = strtok(charLine, ":");
+								while (bookingString != NULL)
+								{
+									// Save data as Member / Admin Object
+									booking[bookingCount][bookingColumnCount] = bookingString;
+
+									// Only 5 columns
+									if (bookingColumnCount >= 4) {
+										// Reset count
+										bookingColumnCount = 0;
+									}
+									else { bookingColumnCount++; }
+
+									bookingString = strtok(NULL, ":");
+								}
+
+								bookingCount++;
+							}
+							myfile2.close();
+
+							// Store total account counts into maxAccountCount variable
+							maxBookingCount = bookingCount;
+
+							// Needs additional logic to link Facility (ID) to s_facilitySelected (name) value
+
+							// Loop through booking
+							for (int bookingCount = 0; bookingCount < maxBookingCount; bookingCount++) {
+
+								// bookingID:memberID:facilityID:date:startTime
+								// Check for Booking Facility, Date and Time clash
+								if (facility[facilityCount][0] != booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+								else if (facility[facilityCount][0] == booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+								else {
+									// This is a duplicate!
+									BookingAvailableLabel->Text = "No";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	private: System::Void TimeComboBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		//BookingAvailableLabel->Text = TimeComboBox->SelectedItem->ToString();
 		
 		// Get user selected option for Time
-		String^ s_timeSelected = TimeComboBox->SelectedItem->ToString();
+		s_timeSelected = TimeComboBox->SelectedItem->ToString();
+
+		// Make sure faciity, date and time are selected
+		if (s_facilitySelected && s_dateSelected && s_timeSelected) {
+
+			// Loop facilities first to match FacilitiesID
+			std::string facilitySelectedConvertToString;
+			std::string dateSelectedConvertToString;
+			std::string timeSelectedConvertToString;
+
+			// Convert selected ComboBox System String^ to String
+			MarshalString(s_facilitySelected, facilitySelectedConvertToString);
+			MarshalString(s_dateSelected, dateSelectedConvertToString);
+			MarshalString(s_timeSelected, timeSelectedConvertToString);
+
+			// Read FacilitiesDB file
+			std::ifstream myfile("FacilityDB.txt");
+			std::string line;
+
+			char charLine[256];
+			char* facilityString;
+
+			std::string facility[999][4];
+
+			// For counting accounts
+			int facilityCount = 0;
+			int maxFacilityCount = 0;
+
+			// For counting account columns
+			int facilityColumnCount = 0;
+
+			// Open FacilitiesDB file
+			if (myfile.is_open())
+			{
+				while (getline(myfile, line))
+				{
+					// Change line to const char *, then use strcpy to use as charLine variable.
+					strcpy(charLine, line.c_str());
+
+					// Strtok charLine to separate the entire string with ':' as the delimiter
+					facilityString = strtok(charLine, ":");
+					while (facilityString != NULL)
+					{
+						// Save data as Member / Admin Object
+						facility[facilityCount][facilityColumnCount] = facilityString;
+
+						// Only 4 columns
+						if (facilityColumnCount >= 3) {
+							// Reset count
+							facilityColumnCount = 0;
+						}
+						else { facilityColumnCount++; }
+
+						facilityString = strtok(NULL, ":");
+					}
+
+					facilityCount++;
+				}
+				myfile.close();
+
+				// Store total account counts into maxAccountCount variable
+				maxFacilityCount = facilityCount;
+
+				// Loop through facilities
+				for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+
+					// Check for Facility name match (ID found for facility)
+					if (facilitySelectedConvertToString == facility[facilityCount][1]) {
+
+						// Get the Facility ID
+						//facility[facilityCount][0];
+
+						// Get the Facility name
+						//facility[facilityCount][2];
+
+						// Peak Hour
+						//facility[facilityCount][2];
+
+						// Off Peak Hour
+						//facility[facilityCount][3];
+
+						// Do booking loop, also check for duplicates on the way
+						// Read BookingDB file after FacilityID has been established
+						std::ifstream myfile2("BookingDB.txt");
+						std::string line;
+
+						char charLine[256];
+						char* bookingString;
+
+						std::string booking[999][5];
+
+						// For counting accounts
+						int bookingCount = 0;
+						int maxBookingCount = 0;
+
+						// For counting account columns
+						int bookingColumnCount = 0;
+
+						if (myfile2.is_open())
+						{
+							while (getline(myfile2, line))
+							{
+								// Change line to const char *, then use strcpy to use as charLine variable.
+								strcpy(charLine, line.c_str());
+
+								// Strtok charLine to separate the entire string with ':' as the delimiter
+								bookingString = strtok(charLine, ":");
+								while (bookingString != NULL)
+								{
+									// Save data as Member / Admin Object
+									booking[bookingCount][bookingColumnCount] = bookingString;
+
+									// Only 5 columns
+									if (bookingColumnCount >= 4) {
+										// Reset count
+										bookingColumnCount = 0;
+									}
+									else { bookingColumnCount++; }
+
+									bookingString = strtok(NULL, ":");
+								}
+
+								bookingCount++;
+							}
+							myfile2.close();
+
+							// Store total account counts into maxAccountCount variable
+							maxBookingCount = bookingCount;
+
+							// Needs additional logic to link Facility (ID) to s_facilitySelected (name) value
+
+							// Loop through booking
+							for (int bookingCount = 0; bookingCount < maxBookingCount; bookingCount++) {
+
+								// bookingID:memberID:facilityID:date:startTime
+								// Check for Booking Facility, Date and Time clash
+								if (facility[facilityCount][0] != booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price (2 hour blocks)
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+								else if (facility[facilityCount][0] == booking[bookingCount][2] && dateSelectedConvertToString != booking[bookingCount][3] && timeSelectedConvertToString != booking[bookingCount][4]) {
+
+									// This is not a duplicate
+									BookingAvailableLabel->Text = "Yes";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+								else {
+									// This is a duplicate!
+									BookingAvailableLabel->Text = "No";
+
+									// Calculate Price
+									if (timeSelectedConvertToString == "6PM" || timeSelectedConvertToString == "8PM" || timeSelectedConvertToString == "10PM") {
+										float peakPrice = atoi(facility[facilityCount][2].c_str());
+										float totalPeakPrice = peakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+									else {
+										float offPeakPrice = atoi(facility[facilityCount][3].c_str());
+										float totalOffPeakPrice = offPeakPrice * 2;
+										// Convert to System String
+										String^ s_totalPeakPrice = gcnew String(std::to_string(totalOffPeakPrice).c_str());
+										PriceLabel->Text = s_totalPeakPrice;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 };
 }
