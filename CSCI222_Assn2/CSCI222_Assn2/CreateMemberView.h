@@ -294,8 +294,8 @@ namespace CSCI222_Assn2 {
 		std::string memberIDConvertToString;
 		std::string usernameConvertToString;
 		std::string passwordConvertToString;
-		std::string nameConvertToString;
 		std::string rankingConvertToString;
+		std::string nameConvertToString;
 		std::string dobConvertToString;
 		std::string addressConvertToString;
 
@@ -304,8 +304,8 @@ namespace CSCI222_Assn2 {
 		String^ memberIDTextBox = MemberIDTextBox->Text;
 		String^ usernameTextBox = UsernameTextBox->Text;
 		String^ passwordTextBox = PasswordTextBox->Text;
-		String^ nameTextBox = NameTextBox->Text;
 		String^ rankingTextBox = RankingTextBox->Text;
+		String^ nameTextBox = NameTextBox->Text;
 		String^ dobTextBox = DOBTextBox->Text;
 		String^ addressTextBox = AddressTextBox->Text;
 
@@ -313,15 +313,15 @@ namespace CSCI222_Assn2 {
 		MarshalString(memberIDTextBox, memberIDConvertToString);
 		MarshalString(usernameTextBox, usernameConvertToString);
 		MarshalString(passwordTextBox, passwordConvertToString);
-		MarshalString(nameTextBox, nameConvertToString);
 		MarshalString(rankingTextBox, rankingConvertToString);
+		MarshalString(nameTextBox, nameConvertToString);
 		MarshalString(dobTextBox, dobConvertToString);
 		MarshalString(addressTextBox, addressConvertToString);
 
 		std::ofstream afile;
 		afile.open("AccountDB.txt", std::ios::app);
 
-		afile << "\n" << memberIDConvertToString << ":" << usernameConvertToString << ":" << passwordConvertToString << ":" << nameConvertToString << ":" << rankingConvertToString << ":" << dobConvertToString << ":" << addressConvertToString;
+		afile << "\n" << memberIDConvertToString << ":" << usernameConvertToString << ":" << passwordConvertToString << ":" << rankingConvertToString << ":" << nameConvertToString << ":" << dobConvertToString << ":" << addressConvertToString;
 
 		afile.close();
 

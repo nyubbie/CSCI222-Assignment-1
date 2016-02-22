@@ -251,6 +251,7 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 			this->BookingFacilityComboBox->Name = L"BookingFacilityComboBox";
 			this->BookingFacilityComboBox->Size = System::Drawing::Size(121, 21);
 			this->BookingFacilityComboBox->TabIndex = 2;
+			this->BookingFacilityComboBox->SelectedIndexChanged += gcnew System::EventHandler(this, &MemberBookingView::BookingFacilityComboBox_SelectedIndexChanged);
 			// 
 			// TimeTitle
 			// 
@@ -287,6 +288,7 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 			this->DateComboBox->Name = L"DateComboBox";
 			this->DateComboBox->Size = System::Drawing::Size(121, 21);
 			this->DateComboBox->TabIndex = 7;
+			this->DateComboBox->SelectedIndexChanged += gcnew System::EventHandler(this, &MemberBookingView::DateComboBox_SelectedIndexChanged);
 			// 
 			// TimeComboBox
 			// 
@@ -295,6 +297,7 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 			this->TimeComboBox->Name = L"TimeComboBox";
 			this->TimeComboBox->Size = System::Drawing::Size(121, 21);
 			this->TimeComboBox->TabIndex = 8;
+			this->TimeComboBox->SelectedIndexChanged += gcnew System::EventHandler(this, &MemberBookingView::TimeComboBox_SelectedIndexChanged);
 			// 
 			// PriceTitle
 			// 
@@ -394,6 +397,8 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 		MarshalString(MemberID, retainMemberID);
 		
 		// Clicking on booking button will generate booking in BookingDB
+		//s_dateSelected;
+		//s_timeSelected;
 	}
 
 	private: System::Void CancelButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -416,6 +421,20 @@ private: System::Windows::Forms::Label^  BookingAvailableLabel;
 			(const wchar_t*)(Marshal::StringToHGlobalUni(s)).ToPointer();
 		os = chars;
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
+	}
+	private: System::Void BookingFacilityComboBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void DateComboBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		//BookingAvailableLabel->Text = DateComboBox->SelectedItem->ToString();
+
+		// Get user selected option for Date
+		String^ s_dateSelected = DateComboBox->SelectedItem->ToString();
+	}
+	private: System::Void TimeComboBox_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		//BookingAvailableLabel->Text = TimeComboBox->SelectedItem->ToString();
+		
+		// Get user selected option for Time
+		String^ s_timeSelected = TimeComboBox->SelectedItem->ToString();
 	}
 };
 }
