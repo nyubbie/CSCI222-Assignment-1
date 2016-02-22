@@ -4,6 +4,9 @@
 #include "CreateMemberView.h"
 #include "EditMemberView.h"
 #include "SearchMemberView.h"
+#include "CreateFacilityView.h"
+#include "EditFacilityView.h"
+#include "SearchFacilityView.h"
 
 #pragma once
 
@@ -48,6 +51,19 @@ namespace CSCI222_Assn2 {
 			label7->Text = s_memberDOB;*/
 		}
 	private: System::Windows::Forms::Label^  MemberNotFoundTitle;
+
+	private: System::Windows::Forms::Label^  FacilityIDLabel;
+	private: System::Windows::Forms::Button^  SearchFacilityButton;
+
+	private: System::Windows::Forms::Button^  DeleteFacilityButton;
+
+	private: System::Windows::Forms::Button^  CreateFacilityButton;
+	private: System::Windows::Forms::TextBox^  FacilityIDTextBox;
+
+
+	private: System::Windows::Forms::Button^  EditFacilityButton;
+	private: System::Windows::Forms::Label^  FacilityNotFoundLabel;
+
 	public:
 
 	private: System::Windows::Forms::Form ^ mainForm;
@@ -110,6 +126,13 @@ namespace CSCI222_Assn2 {
 			this->MemberIDTitle = (gcnew System::Windows::Forms::Label());
 			this->LogoutButton = (gcnew System::Windows::Forms::Button());
 			this->MemberNotFoundTitle = (gcnew System::Windows::Forms::Label());
+			this->FacilityIDLabel = (gcnew System::Windows::Forms::Label());
+			this->SearchFacilityButton = (gcnew System::Windows::Forms::Button());
+			this->DeleteFacilityButton = (gcnew System::Windows::Forms::Button());
+			this->CreateFacilityButton = (gcnew System::Windows::Forms::Button());
+			this->FacilityIDTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->EditFacilityButton = (gcnew System::Windows::Forms::Button());
+			this->FacilityNotFoundLabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// AdminViewTitle
@@ -141,7 +164,7 @@ namespace CSCI222_Assn2 {
 			// 
 			// EditMemberButton
 			// 
-			this->EditMemberButton->Location = System::Drawing::Point(195, 189);
+			this->EditMemberButton->Location = System::Drawing::Point(199, 145);
 			this->EditMemberButton->Name = L"EditMemberButton";
 			this->EditMemberButton->Size = System::Drawing::Size(75, 23);
 			this->EditMemberButton->TabIndex = 4;
@@ -151,14 +174,14 @@ namespace CSCI222_Assn2 {
 			// 
 			// MemberIDTextBox
 			// 
-			this->MemberIDTextBox->Location = System::Drawing::Point(89, 191);
+			this->MemberIDTextBox->Location = System::Drawing::Point(93, 147);
 			this->MemberIDTextBox->Name = L"MemberIDTextBox";
 			this->MemberIDTextBox->Size = System::Drawing::Size(100, 20);
 			this->MemberIDTextBox->TabIndex = 5;
 			// 
 			// CreateMemberButton
 			// 
-			this->CreateMemberButton->Location = System::Drawing::Point(31, 162);
+			this->CreateMemberButton->Location = System::Drawing::Point(35, 118);
 			this->CreateMemberButton->Name = L"CreateMemberButton";
 			this->CreateMemberButton->Size = System::Drawing::Size(91, 23);
 			this->CreateMemberButton->TabIndex = 7;
@@ -168,7 +191,7 @@ namespace CSCI222_Assn2 {
 			// 
 			// DeleteMemberButton
 			// 
-			this->DeleteMemberButton->Location = System::Drawing::Point(372, 189);
+			this->DeleteMemberButton->Location = System::Drawing::Point(376, 145);
 			this->DeleteMemberButton->Name = L"DeleteMemberButton";
 			this->DeleteMemberButton->Size = System::Drawing::Size(91, 23);
 			this->DeleteMemberButton->TabIndex = 8;
@@ -178,7 +201,7 @@ namespace CSCI222_Assn2 {
 			// 
 			// SearchMemberButton
 			// 
-			this->SearchMemberButton->Location = System::Drawing::Point(276, 189);
+			this->SearchMemberButton->Location = System::Drawing::Point(280, 145);
 			this->SearchMemberButton->Name = L"SearchMemberButton";
 			this->SearchMemberButton->Size = System::Drawing::Size(90, 23);
 			this->SearchMemberButton->TabIndex = 9;
@@ -189,7 +212,7 @@ namespace CSCI222_Assn2 {
 			// MemberIDTitle
 			// 
 			this->MemberIDTitle->AutoSize = true;
-			this->MemberIDTitle->Location = System::Drawing::Point(28, 194);
+			this->MemberIDTitle->Location = System::Drawing::Point(32, 150);
 			this->MemberIDTitle->Name = L"MemberIDTitle";
 			this->MemberIDTitle->Size = System::Drawing::Size(59, 13);
 			this->MemberIDTitle->TabIndex = 10;
@@ -197,7 +220,7 @@ namespace CSCI222_Assn2 {
 			// 
 			// LogoutButton
 			// 
-			this->LogoutButton->Location = System::Drawing::Point(469, 189);
+			this->LogoutButton->Location = System::Drawing::Point(477, 68);
 			this->LogoutButton->Name = L"LogoutButton";
 			this->LogoutButton->Size = System::Drawing::Size(90, 23);
 			this->LogoutButton->TabIndex = 11;
@@ -208,16 +231,87 @@ namespace CSCI222_Assn2 {
 			// MemberNotFoundTitle
 			// 
 			this->MemberNotFoundTitle->AutoSize = true;
-			this->MemberNotFoundTitle->Location = System::Drawing::Point(128, 167);
+			this->MemberNotFoundTitle->Location = System::Drawing::Point(141, 123);
 			this->MemberNotFoundTitle->Name = L"MemberNotFoundTitle";
 			this->MemberNotFoundTitle->Size = System::Drawing::Size(0, 13);
 			this->MemberNotFoundTitle->TabIndex = 12;
+			// 
+			// FacilityIDLabel
+			// 
+			this->FacilityIDLabel->AutoSize = true;
+			this->FacilityIDLabel->Location = System::Drawing::Point(32, 214);
+			this->FacilityIDLabel->Name = L"FacilityIDLabel";
+			this->FacilityIDLabel->Size = System::Drawing::Size(53, 13);
+			this->FacilityIDLabel->TabIndex = 18;
+			this->FacilityIDLabel->Text = L"FacilityID:";
+			// 
+			// SearchFacilityButton
+			// 
+			this->SearchFacilityButton->Location = System::Drawing::Point(280, 209);
+			this->SearchFacilityButton->Name = L"SearchFacilityButton";
+			this->SearchFacilityButton->Size = System::Drawing::Size(90, 23);
+			this->SearchFacilityButton->TabIndex = 17;
+			this->SearchFacilityButton->Text = L"Search Facility";
+			this->SearchFacilityButton->UseVisualStyleBackColor = true;
+			this->SearchFacilityButton->Click += gcnew System::EventHandler(this, &AdminView::SearchFacilityButton_Click);
+			// 
+			// DeleteFacilityButton
+			// 
+			this->DeleteFacilityButton->Location = System::Drawing::Point(376, 209);
+			this->DeleteFacilityButton->Name = L"DeleteFacilityButton";
+			this->DeleteFacilityButton->Size = System::Drawing::Size(91, 23);
+			this->DeleteFacilityButton->TabIndex = 16;
+			this->DeleteFacilityButton->Text = L"Delete Facility";
+			this->DeleteFacilityButton->UseVisualStyleBackColor = true;
+			this->DeleteFacilityButton->Click += gcnew System::EventHandler(this, &AdminView::DeleteFacilityButton_Click);
+			// 
+			// CreateFacilityButton
+			// 
+			this->CreateFacilityButton->Location = System::Drawing::Point(35, 182);
+			this->CreateFacilityButton->Name = L"CreateFacilityButton";
+			this->CreateFacilityButton->Size = System::Drawing::Size(91, 23);
+			this->CreateFacilityButton->TabIndex = 15;
+			this->CreateFacilityButton->Text = L"Create Facility";
+			this->CreateFacilityButton->UseVisualStyleBackColor = true;
+			this->CreateFacilityButton->Click += gcnew System::EventHandler(this, &AdminView::CreateFacilityButton_Click);
+			// 
+			// FacilityIDTextBox
+			// 
+			this->FacilityIDTextBox->Location = System::Drawing::Point(93, 211);
+			this->FacilityIDTextBox->Name = L"FacilityIDTextBox";
+			this->FacilityIDTextBox->Size = System::Drawing::Size(100, 20);
+			this->FacilityIDTextBox->TabIndex = 14;
+			// 
+			// EditFacilityButton
+			// 
+			this->EditFacilityButton->Location = System::Drawing::Point(199, 209);
+			this->EditFacilityButton->Name = L"EditFacilityButton";
+			this->EditFacilityButton->Size = System::Drawing::Size(75, 23);
+			this->EditFacilityButton->TabIndex = 13;
+			this->EditFacilityButton->Text = L"Edit Facility";
+			this->EditFacilityButton->UseVisualStyleBackColor = true;
+			this->EditFacilityButton->Click += gcnew System::EventHandler(this, &AdminView::EditFacilityButton_Click);
+			// 
+			// FacilityNotFoundLabel
+			// 
+			this->FacilityNotFoundLabel->AutoSize = true;
+			this->FacilityNotFoundLabel->Location = System::Drawing::Point(141, 187);
+			this->FacilityNotFoundLabel->Name = L"FacilityNotFoundLabel";
+			this->FacilityNotFoundLabel->Size = System::Drawing::Size(0, 13);
+			this->FacilityNotFoundLabel->TabIndex = 19;
 			// 
 			// AdminView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(603, 261);
+			this->Controls->Add(this->FacilityNotFoundLabel);
+			this->Controls->Add(this->FacilityIDLabel);
+			this->Controls->Add(this->SearchFacilityButton);
+			this->Controls->Add(this->DeleteFacilityButton);
+			this->Controls->Add(this->CreateFacilityButton);
+			this->Controls->Add(this->FacilityIDTextBox);
+			this->Controls->Add(this->EditFacilityButton);
 			this->Controls->Add(this->MemberNotFoundTitle);
 			this->Controls->Add(this->LogoutButton);
 			this->Controls->Add(this->MemberIDTitle);
@@ -327,7 +421,7 @@ namespace CSCI222_Assn2 {
 				else {
 
 					// Tell user it's an invalid ID
-					MemberNotFoundTitle->Text = "This is an invalid ID!";
+					MemberNotFoundTitle->Text = "This is an invalid member ID!";
 				}
 			}
 		}
@@ -413,7 +507,7 @@ namespace CSCI222_Assn2 {
 				else {
 
 					// Tell user it's an invalid ID
-					MemberNotFoundTitle->Text = "This is an invalid ID!";
+					MemberNotFoundTitle->Text = "This is an invalid member ID!";
 				}
 			}
 		}
@@ -499,7 +593,7 @@ namespace CSCI222_Assn2 {
 				}
 				else {
 					// Tell user it's an invalid ID
-					MemberNotFoundTitle->Text = "This is an invalid ID!";
+					MemberNotFoundTitle->Text = "This is an invalid member ID!";
 				}
 
 				// Overwrite AccountDB.txt
@@ -539,6 +633,265 @@ namespace CSCI222_Assn2 {
 			(const wchar_t*)(Marshal::StringToHGlobalUni(s)).ToPointer();
 		os = chars;
 		Marshal::FreeHGlobal(IntPtr((void*)chars));
+	}
+	private: System::Void CreateFacilityButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Go into Create Facility View
+		this->Hide();
+		CreateFacilityView^ createFacilityForm = gcnew CreateFacilityView(this);
+		createFacilityForm->Show();
+	}
+	private: System::Void EditFacilityButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Declare strings for conversion
+		std::string facilityIDConvertToString;
+
+		// Get ID entered from FacilityIDTextBox
+		String^ facilityIDTextBox = FacilityIDTextBox->Text;
+
+		// Convert System String to String
+		MarshalString(facilityIDTextBox, facilityIDConvertToString);
+
+		// Read FacilityDB file
+		std::ifstream myfile("FacilityDB.txt");
+
+		std::string line;
+		char charLine[256];
+		char* facilityString;
+
+		std::string facility[999][4];
+
+		// For counting facilities
+		int facilityCount = 0;
+		int maxFacilityCount = 0;
+
+		// For counting facility columns
+		int facilityColumnCount = 0;
+
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				// Change line to const char *, then use strcpy to use as charLine variable.
+				strcpy(charLine, line.c_str());
+
+				// Strtok charLine to separate the entire string with ':' as the delimiter
+				facilityString = strtok(charLine, ":");
+				while (facilityString != NULL)
+				{
+					// Save data as Facility Object
+					facility[facilityCount][facilityColumnCount] = facilityString;
+
+					// Only 4 columns
+					if (facilityColumnCount >= 3) {
+						// Reset count
+						facilityColumnCount = 0;
+					}
+					else { facilityColumnCount++; }
+
+					facilityString = strtok(NULL, ":");
+				}
+
+				facilityCount++;
+			}
+			myfile.close();
+
+			// Store total facility counts into maxFacilityCount variable
+			maxFacilityCount = facilityCount;
+
+			// Loop through facilities
+			for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+
+				// Check for Facility via FacilityID
+				if (facilityIDConvertToString == facility[facilityCount][0]) {
+
+					// Go into Member Form
+					this->Hide();
+					EditFacilityView^ editFacilityForm = gcnew EditFacilityView(this, facility[facilityCount][0], facility[facilityCount][1], facility[facilityCount][2], facility[facilityCount][3]);
+					editFacilityForm->Show();
+					String^ retainFacilityID = gcnew String(facility[facilityCount][0].c_str());
+					editFacilityForm->FacilityID = retainFacilityID;
+				}
+				else {
+
+					// Tell user it's an invalid ID
+					FacilityNotFoundLabel->Text = "This is an invalid facility ID!";
+				}
+			}
+		}
+	}
+	private: System::Void SearchFacilityButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Declare strings for conversion
+		std::string facilityIDConvertToString;
+
+		// Get ID entered from FacilityIDTextBox
+		String^ facilityIDTextBox = FacilityIDTextBox->Text;
+
+		// Convert System String to String
+		MarshalString(facilityIDTextBox, facilityIDConvertToString);
+
+		// Read FacilityDB file
+		std::ifstream myfile("FacilityDB.txt");
+
+		std::string line;
+		char charLine[256];
+		char* facilityString;
+
+		std::string facility[999][4];
+
+		// For counting facilities
+		int facilityCount = 0;
+		int maxFacilityCount = 0;
+
+		// For counting facility columns
+		int facilityColumnCount = 0;
+
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				// Change line to const char *, then use strcpy to use as charLine variable.
+				strcpy(charLine, line.c_str());
+
+				// Strtok charLine to separate the entire string with ':' as the delimiter
+				facilityString = strtok(charLine, ":");
+				while (facilityString != NULL)
+				{
+					// Save data as Facility Object
+					facility[facilityCount][facilityColumnCount] = facilityString;
+
+					// Only 4 columns
+					if (facilityColumnCount >= 3) {
+						// Reset count
+						facilityColumnCount = 0;
+					}
+					else { facilityColumnCount++; }
+
+					facilityString = strtok(NULL, ":");
+				}
+
+				facilityCount++;
+			}
+			myfile.close();
+
+			// Store total facility counts into maxFacilityCount variable
+			maxFacilityCount = facilityCount;
+
+			// Loop through facilities
+			for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+
+				// Check for Facility via FacilityID
+				if (facilityIDConvertToString == facility[facilityCount][0]) {
+
+					// Go into Member Form
+					this->Hide();
+					SearchFacilityView^ searchFacilityForm = gcnew SearchFacilityView(this, facility[facilityCount][0], facility[facilityCount][1], facility[facilityCount][2], facility[facilityCount][3]);
+					searchFacilityForm->Show();
+					String^ retainFacilityID = gcnew String(facility[facilityCount][0].c_str());
+					searchFacilityForm->FacilityID = retainFacilityID;
+				}
+				else {
+
+					// Tell user it's an invalid ID
+					FacilityNotFoundLabel->Text = "This is an invalid facility ID!";
+				}
+			}
+		}
+	}
+	private: System::Void DeleteFacilityButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Declare strings for conversion
+		std::string facilityIDConvertToString;
+
+		// Get ID entered from MemberIDTextBox
+		String^ facilityIDTextBox = FacilityIDTextBox->Text;
+
+		// Convert System String to String
+		MarshalString(facilityIDTextBox, facilityIDConvertToString);
+
+		// Read FacilityDB file
+		std::ifstream myfile("FacilityDB.txt");
+
+		std::string line;
+		char charLine[256];
+		char* facilityString;
+
+		std::string facility[999][4];
+
+		// For counting facilities
+		int facilityCount = 0;
+		int maxFacilityCount = 0;
+
+		// For counting facility columns
+		int facilityColumnCount = 0;
+
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				// Change line to const char *, then use strcpy to use as charLine variable.
+				strcpy(charLine, line.c_str());
+
+				// Strtok charLine to separate the entire string with ':' as the delimiter
+				facilityString = strtok(charLine, ":");
+				while (facilityString != NULL)
+				{
+					// Save data as Facility Object
+					facility[facilityCount][facilityColumnCount] = facilityString;
+
+					// Only 4 columns
+					if (facilityColumnCount >= 3) {
+						// Reset count
+						facilityColumnCount = 0;
+					}
+					else { facilityColumnCount++; }
+
+					facilityString = strtok(NULL, ":");
+				}
+
+				facilityCount++;
+			}
+			myfile.close();
+
+			// Store total facility counts into maxFacilityCount variable
+			maxFacilityCount = facilityCount;
+
+			// Loop through facility
+			for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+
+				// Check for Facility via FacilityID
+				if (facilityIDConvertToString == facility[facilityCount][0]) {
+
+					// Set Facility to "invalid" for further handling
+					facility[facilityCount][0] = "invalid";
+					facility[facilityCount][1] = "invalid";
+					facility[facilityCount][2] = "invalid";
+					facility[facilityCount][3] = "invalid";
+				}
+				else {
+					// Tell user it's an invalid ID
+					FacilityNotFoundLabel->Text = "This is an invalid facility ID!";
+				}
+				
+				// Overwrite FacilityDB.txt
+				std::ofstream overwriteFile("FacilityDB.txt");
+				if (overwriteFile.is_open()) {
+					// Loop through facilities for file output
+					for (int facilityCount = 0; facilityCount < maxFacilityCount; facilityCount++) {
+						// Loop through facility columns as well
+						for (int facilityColumnCount = 0; facilityColumnCount < 4; facilityColumnCount++) {
+							if (facilityColumnCount <= 2 && facility[facilityCount][facilityColumnCount] != "invalid") {
+								overwriteFile << facility[facilityCount][facilityColumnCount] << ":";
+							}
+							else if (facilityColumnCount == 3 && facility[facilityCount][facilityColumnCount] != "invalid") {
+								overwriteFile << facility[facilityCount][facilityColumnCount] << "\n";
+							}
+						}
+					}
+				}
+				overwriteFile.close();
+
+				// Alert user member removed
+				FacilityNotFoundLabel->Text = "Facility removed!";
+			}
+		}
 	}
 };
 }

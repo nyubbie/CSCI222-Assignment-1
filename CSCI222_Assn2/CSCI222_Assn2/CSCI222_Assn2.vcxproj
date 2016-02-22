@@ -135,17 +135,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdminView.cpp" />
+    <ClCompile Include="CreateFacilityView.cpp" />
     <ClCompile Include="CreateMemberView.cpp" />
+    <ClCompile Include="EditFacilityView.cpp" />
     <ClCompile Include="EditView.cpp" />
     <ClCompile Include="LoginView.cpp" />
     <ClCompile Include="MemberView.cpp" />
+    <ClCompile Include="SearchFacilityView.cpp" />
     <ClCompile Include="SearchMemberView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdminView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="CreateFacilityView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="CreateMemberView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="EditFacilityView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EditMemberView.h">
@@ -160,6 +169,9 @@
     <ClInclude Include="MemberView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="SearchFacilityView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="SearchMemberView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -168,8 +180,14 @@
     <EmbeddedResource Include="AdminView.resx">
       <DependentUpon>AdminView.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateFacilityView.resx">
+      <DependentUpon>CreateFacilityView.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateMemberView.resx">
       <DependentUpon>CreateMemberView.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditFacilityView.resx">
+      <DependentUpon>EditFacilityView.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditMemberView.resx">
       <DependentUpon>EditMemberView.h</DependentUpon>
@@ -182,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MemberView.resx">
       <DependentUpon>MemberView.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchFacilityView.resx">
+      <DependentUpon>SearchFacilityView.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchMemberView.resx">
       <DependentUpon>SearchMemberView.h</DependentUpon>

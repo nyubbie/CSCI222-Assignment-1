@@ -36,6 +36,15 @@
     <ClInclude Include="SearchMemberView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CreateFacilityView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EditFacilityView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchFacilityView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LoginView.resx">
@@ -56,6 +65,9 @@
     <EmbeddedResource Include="EditMemberView.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="SearchMemberView.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoginView.cpp">
@@ -74,6 +86,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SearchMemberView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateFacilityView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EditFacilityView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchFacilityView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
