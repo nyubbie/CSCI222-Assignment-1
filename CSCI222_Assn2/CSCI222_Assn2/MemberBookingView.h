@@ -1,3 +1,4 @@
+#include <ctime>
 #include <string>
 #include <cstring>
 #include <fstream>
@@ -36,9 +37,9 @@ namespace CSCI222_Assn2 {
 			String^ s_memberID = gcnew String(memberID.c_str());
 			BookingMemberIDLabel->Text = s_memberID;
 
-			//////////////////////////
-			// Populate ComboBox
-			//////////////////////////
+			//////////////////////////////////
+			// Populate FacilityComboBox
+			//////////////////////////////////
 
 			// Read FacilityDB file
 			std::ifstream myfile("FacilityDB.txt");
@@ -88,11 +89,58 @@ namespace CSCI222_Assn2 {
 				myfile.close();
 			}
 
-			//////////////////////////
-			// End of Populate ComboBox
-			//////////////////////////
+			//////////////////////////////////
+			// End of Populate FacilityComboBox
+			//////////////////////////////////
 
+			//////////////////////////////////
+			// Populate DateComboBox
+			//////////////////////////////////
 
+			time_t t = time(0);   // get time now
+			struct tm * now = localtime(&t);
+
+			// Get Year, Month, Day
+			int year = now->tm_year + 1900;
+			int month = now->tm_mon + 1;
+			int day = now->tm_mday;
+
+			for (int dateLimitCount = 0; dateLimitCount < 8; dateLimitCount++) {
+
+				// Convert from int to string
+				std::string currentYear = std::to_string(year);
+				std::string currentMonth = std::to_string(month);
+				std::string currentDay = std::to_string(day + dateLimitCount) ;
+
+				std::string currentDate = currentDay + "-" + currentMonth + "-" + currentYear;
+				String^ s_currentDate = gcnew String(currentDate.c_str());
+				DateComboBox->Items->Add(s_currentDate);
+			}
+
+			//////////////////////////////////
+			// End of Populate DateComboBox
+			//////////////////////////////////
+
+			//////////////////////////////////
+			// Populate TimeComboBox
+			//////////////////////////////////
+
+			// booking starts from 0800 hrs to 2200 hrs
+			// 0800 1000 1200 1400 1600 1800 2000 2200
+
+			// Just add Time
+			TimeComboBox->Items->Add("8:00AM");
+			TimeComboBox->Items->Add("10:00AM");
+			TimeComboBox->Items->Add("12:00PM");
+			TimeComboBox->Items->Add("2:00PM");
+			TimeComboBox->Items->Add("4:00PM");
+			TimeComboBox->Items->Add("6:00PM");
+			TimeComboBox->Items->Add("8:00PM");
+			TimeComboBox->Items->Add("10:00PM");
+
+			//////////////////////////////////
+			// End of Populate TimeComboBox
+			//////////////////////////////////
 
 			/*String^ s_memberName = gcnew String(memberName.c_str());
 			NameLabel->Text = s_memberName;
@@ -103,8 +151,10 @@ namespace CSCI222_Assn2 {
 		}
 	private: System::Windows::Forms::Button^  MakeBookingButton;
 	private: System::Windows::Forms::Label^  DateTitle;
-	private: System::Windows::Forms::ComboBox^  comboBox1;
-	private: System::Windows::Forms::ComboBox^  comboBox2;
+	private: System::Windows::Forms::ComboBox^  DateComboBox;
+	private: System::Windows::Forms::ComboBox^  TimeComboBox;
+
+
 	private: System::Windows::Forms::Label^  PriceTitle;
 	private: System::Windows::Forms::Label^  PriceLabel;
 
@@ -115,6 +165,9 @@ namespace CSCI222_Assn2 {
 	private: System::Windows::Forms::Label^  BookingMemberIDTitle;
 	private: System::Windows::Forms::Label^  BookingMemberIDLabel;
 	private: System::Windows::Forms::Button^  CancelButton;
+private: System::Windows::Forms::Label^  BookingAvailableTitle;
+private: System::Windows::Forms::Label^  BookingAvailableLabel;
+
 
 
 
@@ -162,13 +215,15 @@ namespace CSCI222_Assn2 {
 			this->TimeTitle = (gcnew System::Windows::Forms::Label());
 			this->MakeBookingButton = (gcnew System::Windows::Forms::Button());
 			this->DateTitle = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->DateComboBox = (gcnew System::Windows::Forms::ComboBox());
+			this->TimeComboBox = (gcnew System::Windows::Forms::ComboBox());
 			this->PriceTitle = (gcnew System::Windows::Forms::Label());
 			this->PriceLabel = (gcnew System::Windows::Forms::Label());
 			this->BookingMemberIDTitle = (gcnew System::Windows::Forms::Label());
 			this->BookingMemberIDLabel = (gcnew System::Windows::Forms::Label());
 			this->CancelButton = (gcnew System::Windows::Forms::Button());
+			this->BookingAvailableTitle = (gcnew System::Windows::Forms::Label());
+			this->BookingAvailableLabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// MemberBookingTitle
@@ -225,26 +280,26 @@ namespace CSCI222_Assn2 {
 			this->DateTitle->TabIndex = 6;
 			this->DateTitle->Text = L"Date:";
 			// 
-			// comboBox1
+			// DateComboBox
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(95, 137);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 21);
-			this->comboBox1->TabIndex = 7;
+			this->DateComboBox->FormattingEnabled = true;
+			this->DateComboBox->Location = System::Drawing::Point(95, 137);
+			this->DateComboBox->Name = L"DateComboBox";
+			this->DateComboBox->Size = System::Drawing::Size(121, 21);
+			this->DateComboBox->TabIndex = 7;
 			// 
-			// comboBox2
+			// TimeComboBox
 			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(95, 175);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(121, 21);
-			this->comboBox2->TabIndex = 8;
+			this->TimeComboBox->FormattingEnabled = true;
+			this->TimeComboBox->Location = System::Drawing::Point(95, 175);
+			this->TimeComboBox->Name = L"TimeComboBox";
+			this->TimeComboBox->Size = System::Drawing::Size(121, 21);
+			this->TimeComboBox->TabIndex = 8;
 			// 
 			// PriceTitle
 			// 
 			this->PriceTitle->AutoSize = true;
-			this->PriceTitle->Location = System::Drawing::Point(351, 99);
+			this->PriceTitle->Location = System::Drawing::Point(290, 99);
 			this->PriceTitle->Name = L"PriceTitle";
 			this->PriceTitle->Size = System::Drawing::Size(34, 13);
 			this->PriceTitle->TabIndex = 9;
@@ -253,7 +308,7 @@ namespace CSCI222_Assn2 {
 			// PriceLabel
 			// 
 			this->PriceLabel->AutoSize = true;
-			this->PriceLabel->Location = System::Drawing::Point(392, 99);
+			this->PriceLabel->Location = System::Drawing::Point(331, 99);
 			this->PriceLabel->Name = L"PriceLabel";
 			this->PriceLabel->Size = System::Drawing::Size(23, 13);
 			this->PriceLabel->TabIndex = 10;
@@ -287,18 +342,38 @@ namespace CSCI222_Assn2 {
 			this->CancelButton->UseVisualStyleBackColor = true;
 			this->CancelButton->Click += gcnew System::EventHandler(this, &MemberBookingView::CancelButton_Click);
 			// 
+			// BookingAvailableTitle
+			// 
+			this->BookingAvailableTitle->AutoSize = true;
+			this->BookingAvailableTitle->Location = System::Drawing::Point(290, 137);
+			this->BookingAvailableTitle->Name = L"BookingAvailableTitle";
+			this->BookingAvailableTitle->Size = System::Drawing::Size(95, 13);
+			this->BookingAvailableTitle->TabIndex = 14;
+			this->BookingAvailableTitle->Text = L"Booking Available:";
+			// 
+			// BookingAvailableLabel
+			// 
+			this->BookingAvailableLabel->AutoSize = true;
+			this->BookingAvailableLabel->Location = System::Drawing::Point(391, 137);
+			this->BookingAvailableLabel->Name = L"BookingAvailableLabel";
+			this->BookingAvailableLabel->Size = System::Drawing::Size(23, 13);
+			this->BookingAvailableLabel->TabIndex = 15;
+			this->BookingAvailableLabel->Text = L"null";
+			// 
 			// MemberBookingView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(548, 261);
+			this->Controls->Add(this->BookingAvailableLabel);
+			this->Controls->Add(this->BookingAvailableTitle);
 			this->Controls->Add(this->CancelButton);
 			this->Controls->Add(this->BookingMemberIDLabel);
 			this->Controls->Add(this->BookingMemberIDTitle);
 			this->Controls->Add(this->PriceLabel);
 			this->Controls->Add(this->PriceTitle);
-			this->Controls->Add(this->comboBox2);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->TimeComboBox);
+			this->Controls->Add(this->DateComboBox);
 			this->Controls->Add(this->DateTitle);
 			this->Controls->Add(this->MakeBookingButton);
 			this->Controls->Add(this->TimeTitle);
@@ -317,12 +392,8 @@ namespace CSCI222_Assn2 {
 		// MemberID must be passed from previous form
 		std::string retainMemberID;
 		MarshalString(MemberID, retainMemberID);
-
 		
-
-		
-
-		// Time / Date planning
+		// Clicking on booking button will generate booking in BookingDB
 	}
 
 	private: System::Void CancelButton_Click(System::Object^  sender, System::EventArgs^  e) {

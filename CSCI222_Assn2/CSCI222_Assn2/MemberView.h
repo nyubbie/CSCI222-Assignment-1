@@ -39,6 +39,8 @@ namespace CSCI222_Assn2 {
 
 			String^ s_memberID = gcnew String(memberID.c_str());
 			MemberIDLabel->Text = s_memberID;
+			String^ s_memberRanking = gcnew String(memberRanking.c_str());
+			MemberRankingLabel->Text = s_memberRanking;
 			String^ s_memberName = gcnew String(memberName.c_str());
 			NameLabel->Text = s_memberName;
 			String^ s_memberAddress = gcnew String(memberAddress.c_str());
@@ -56,6 +58,10 @@ namespace CSCI222_Assn2 {
 	public: String^ MemberRanking;
 	public: String^ MemberName;
 	public: String^ MemberDOB;
+	private: System::Windows::Forms::Label^  MemberRankingTitle;
+	private: System::Windows::Forms::Label^  MemberRankingLabel;
+
+	public:
 	public: String^ MemberAddress;
 
 	protected:
@@ -125,6 +131,8 @@ namespace CSCI222_Assn2 {
 			this->editMemberDOB = (gcnew System::Windows::Forms::Button());
 			this->memberLogout = (gcnew System::Windows::Forms::Button());
 			this->MakeBookingButton = (gcnew System::Windows::Forms::Button());
+			this->MemberRankingTitle = (gcnew System::Windows::Forms::Label());
+			this->MemberRankingLabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// MemberPageTitle
@@ -259,11 +267,31 @@ namespace CSCI222_Assn2 {
 			this->MakeBookingButton->UseVisualStyleBackColor = true;
 			this->MakeBookingButton->Click += gcnew System::EventHandler(this, &MemberView::MakeBookingButton_Click);
 			// 
+			// MemberRankingTitle
+			// 
+			this->MemberRankingTitle->AutoSize = true;
+			this->MemberRankingTitle->Location = System::Drawing::Point(345, 118);
+			this->MemberRankingTitle->Name = L"MemberRankingTitle";
+			this->MemberRankingTitle->Size = System::Drawing::Size(50, 13);
+			this->MemberRankingTitle->TabIndex = 14;
+			this->MemberRankingTitle->Text = L"Ranking:";
+			// 
+			// MemberRankingLabel
+			// 
+			this->MemberRankingLabel->AutoSize = true;
+			this->MemberRankingLabel->Location = System::Drawing::Point(422, 118);
+			this->MemberRankingLabel->Name = L"MemberRankingLabel";
+			this->MemberRankingLabel->Size = System::Drawing::Size(23, 13);
+			this->MemberRankingLabel->TabIndex = 15;
+			this->MemberRankingLabel->Text = L"null";
+			// 
 			// MemberView
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(656, 261);
+			this->Controls->Add(this->MemberRankingLabel);
+			this->Controls->Add(this->MemberRankingTitle);
 			this->Controls->Add(this->MakeBookingButton);
 			this->Controls->Add(this->memberLogout);
 			this->Controls->Add(this->editMemberDOB);
