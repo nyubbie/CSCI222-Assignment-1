@@ -5,6 +5,7 @@
   CSCI222_Assn2.EditMemberView.resources - Embedded, ContainedInManifestFile, 
   CSCI222_Assn2.EditView.resources - Embedded, ContainedInManifestFile, 
   CSCI222_Assn2.LoginView.resources - Embedded, ContainedInManifestFile, 
+  CSCI222_Assn2.MemberBookingView.resources - Embedded, ContainedInManifestFile, 
   CSCI222_Assn2.MemberView.resources - Embedded, ContainedInManifestFile, 
   CSCI222_Assn2.SearchFacilityView.resources - Embedded, ContainedInManifestFile, 
   CSCI222_Assn2.SearchMemberView.resources - Embedded, ContainedInManifestFile, 
@@ -62,10 +63,24 @@ Class CSCI222_Assn2.AdminView: AutoLayout, AnsiClass, Class, Public, BeforeField
 Class CSCI222_Assn2.EditView: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class CSCI222_Assn2.MemberBookingView: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(System.Windows.Forms.Form, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String MemberID : Public
 Class CSCI222_Assn2.MemberView: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(System.Windows.Forms.Form, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, std.basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String MemberID : Public
+    System.String MemberUsername : Public
+    System.String MemberPassword : Public
+    System.String MemberRanking : Public
+    System.String MemberName : Public
+    System.String MemberDOB : Public
+    System.String MemberAddress : Public
 Class CSCI222_Assn2.LoginView: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

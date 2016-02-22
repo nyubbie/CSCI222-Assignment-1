@@ -1,6 +1,8 @@
 #include <string>
 #include <cstring>
 
+#include "MemberBookingView.h"
+
 #pragma once
 
 namespace CSCI222_Assn2 {
@@ -47,6 +49,14 @@ namespace CSCI222_Assn2 {
 	private: System::Windows::Forms::Button^  MakeBookingButton;
 
 	private: System::Windows::Forms::Form ^ mainForm;
+
+	public: String^ MemberID;
+	public: String^ MemberUsername;
+	public: String^ MemberPassword;
+	public: String^ MemberRanking;
+	public: String^ MemberName;
+	public: String^ MemberDOB;
+	public: String^ MemberAddress;
 
 	protected:
 		/// <summary>
@@ -247,6 +257,7 @@ namespace CSCI222_Assn2 {
 			this->MakeBookingButton->TabIndex = 13;
 			this->MakeBookingButton->Text = L"Make Booking";
 			this->MakeBookingButton->UseVisualStyleBackColor = true;
+			this->MakeBookingButton->Click += gcnew System::EventHandler(this, &MemberView::MakeBookingButton_Click);
 			// 
 			// MemberView
 			// 
@@ -286,8 +297,52 @@ namespace CSCI222_Assn2 {
 
 	// Go back to the Login Screen
 	private: System::Void memberLogout_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+		// Return to Login View
 		mainForm->Show();
 		this->Close();
+	}
+	private: System::Void MakeBookingButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+		// Declare strings for conversion
+		std::string memberIDConvertToString;
+		std::string memberUsernameConvertToString;
+		std::string memberPasswordConvertToString;
+		std::string memberRankingConvertToString;
+		std::string memberNameConvertToString;
+		std::string memberDOBConvertToString;
+		std::string memberAddressConvertToString;
+
+		// Convert System String to String
+		MarshalString(MemberID, memberIDConvertToString);
+		MarshalString(MemberUsername, memberUsernameConvertToString);
+		MarshalString(MemberPassword, memberPasswordConvertToString);
+		MarshalString(MemberRanking, memberRankingConvertToString);
+		MarshalString(MemberName, memberNameConvertToString);
+		MarshalString(MemberDOB, memberDOBConvertToString);
+		MarshalString(MemberAddress, memberAddressConvertToString);
+				
+		// Go into booking system
+		this->Hide();
+		MemberBookingView^ memberBookingForm = gcnew MemberBookingView(this, memberIDConvertToString, memberUsernameConvertToString, memberPasswordConvertToString, memberRankingConvertToString, memberNameConvertToString, memberDOBConvertToString, memberAddressConvertToString);
+		memberBookingForm->Show();
+		memberBookingForm->MemberID = MemberID;
+	}
+
+	void MarshalString(String ^ s, std::string& os) {
+		using namespace Runtime::InteropServices;
+		const char* chars =
+			(const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
+		os = chars;
+		Marshal::FreeHGlobal(IntPtr((void*)chars));
+	}
+
+	void MarshalString(String ^ s, std::wstring& os) {
+		using namespace Runtime::InteropServices;
+		const wchar_t* chars =
+			(const wchar_t*)(Marshal::StringToHGlobalUni(s)).ToPointer();
+		os = chars;
+		Marshal::FreeHGlobal(IntPtr((void*)chars));
 	}
 };
 }

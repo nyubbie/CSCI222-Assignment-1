@@ -140,6 +140,7 @@
     <ClCompile Include="EditFacilityView.cpp" />
     <ClCompile Include="EditView.cpp" />
     <ClCompile Include="LoginView.cpp" />
+    <ClCompile Include="MemberBookingView.cpp" />
     <ClCompile Include="MemberView.cpp" />
     <ClCompile Include="SearchFacilityView.cpp" />
     <ClCompile Include="SearchMemberView.cpp" />
@@ -164,6 +165,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MemberBookingView.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MemberView.h">
@@ -197,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginView.resx">
       <DependentUpon>LoginView.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberBookingView.resx">
+      <DependentUpon>MemberBookingView.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MemberView.resx">
       <DependentUpon>MemberView.h</DependentUpon>

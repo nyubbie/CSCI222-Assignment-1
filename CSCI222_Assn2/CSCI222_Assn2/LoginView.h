@@ -242,6 +242,20 @@ namespace CSCI222_Assn2 {
 					this->Hide();
 					MemberView^ memberForm = gcnew MemberView(this, account[accountCount][0], account[accountCount][1], account[accountCount][2], account[accountCount][3], account[accountCount][4], account[accountCount][5], account[accountCount][6]);
 					memberForm->Show();
+					String^ retainMemberID = gcnew String(account[accountCount][0].c_str());
+					memberForm->MemberID = retainMemberID;
+					String^ retainMemberUsername = gcnew String(account[accountCount][1].c_str());
+					memberForm->MemberUsername = retainMemberUsername;
+					String^ retainMemberPassword = gcnew String(account[accountCount][2].c_str());
+					memberForm->MemberPassword = retainMemberPassword;
+					String^ retainMemberRanking = gcnew String(account[accountCount][3].c_str());
+					memberForm->MemberRanking = retainMemberRanking;
+					String^ retainMemberName = gcnew String(account[accountCount][4].c_str());
+					memberForm->MemberName = retainMemberName;
+					String^ retainMemberDOB = gcnew String(account[accountCount][5].c_str());
+					memberForm->MemberDOB = retainMemberDOB;
+					String^ retainMemberAddress = gcnew String(account[accountCount][6].c_str());
+					memberForm->MemberAddress = retainMemberAddress;
 				}
 				else {
 					
